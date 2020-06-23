@@ -1,0 +1,49 @@
+.Drawingboard {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    overflow: hidden;
+}
+
+.firstBox {
+    position: absolute;
+
+    span {
+        width: 10px;
+        height: 10px;
+        border: 1px solid black;
+        display: none;
+        background: white;
+        position: absolute;
+
+        &:nth-child(1) {
+            left: -4px;
+            top: -4px;
+        }
+
+        &:nth-child(2) {
+            left: 43px;
+            top: -3px;
+        }
+
+        &:nth-child(3) {
+            left: 43px;
+            top: 43px;
+        }
+
+        &:nth-child(4) {
+            left: -3px;
+            top: 43px;
+        }
+    }
+
+    &:hover {
+        span {
+            display: block;
+        }
+    }
+}

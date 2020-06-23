@@ -1,0 +1,90 @@
+.Layers {
+    h2 {
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    width: 200px;
+    height: 600px;
+    border: 2px solid black;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translate(0%, -50%);
+
+
+    &_Add {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+
+        background: black;
+        color: white;
+
+        p {
+            margin-left: 10px;
+        }
+
+        span {
+            width: 20px;
+            margin-right: 10px;
+            height: 20px;
+            border: 1px solid white;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            cursor: pointer;
+
+            &:hover {
+                background: white;
+                border: 1px solid green;
+                color: green;
+
+
+            }
+        }
+    }
+
+    .Layer {
+        background: lightgray;
+        padding: 10px;
+        margin: 5px;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &_Controls {
+            width: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            span {
+
+                width: 20px;
+                height: 20px;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                cursor: pointer;
+
+                p {
+                    text-align: center;
+                    margin: 0px;
+                    padding: 0px;
+                }
+
+                &:nth-child(2) {
+                    border: 1px solid black;
+                    color: black;
+                    text-align: center;
+                }
+            }
+        }
+
+    }
+}

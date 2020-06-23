@@ -1,0 +1,35 @@
+.EditLayers {
+    width: 200px;
+    height: 600px;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translate(0%, -50%);
+    border: 2px solid black;
+
+    h2 {
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    label,
+    input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    input {
+        padding: 10px;
+        text-align: center;
+    }
+
+    &_button {
+        padding: 10px;
+        margin: 10px;
+        background: black;
+        color: white;
+        text-align: center;
+    }
+}
