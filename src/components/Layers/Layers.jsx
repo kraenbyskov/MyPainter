@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import style from "./Layers.module.scss";
 import { firebase } from "../../global/Firebase/config";
 import Layer from "./Layer";
