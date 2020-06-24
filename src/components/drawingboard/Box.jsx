@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
 import style from "./Drawingboard.module.scss";
+import { firebase } from "../../global/Firebase/config";
 
 const Box = (props) => {
-  const [BackgroundColor, setBackgroundColor] = useState(props.BackgroundColor);
   const [PositionX, setPositionX] = useState(props.PositionX);
   const [PositionY, setPositionY] = useState(props.PositionY);
   const [MouseClick, setMouseClick] = useState(false);
-  const [SizeH, setSizeH] = useState(props.SizeH);
-  const [SizeW, setSizeW] = useState(props.SizeW);
+
+  const ref = firebase
+    .firestore()
+    .collection("Users")
+    .doc("Kræn Byskov")
+    .collection("Pages")
+    .doc(props.Id);
 
   useEffect(() => {
     if (MouseClick) {
-      setPositionX(props.X - SizeW / 2);
-      setPositionY(props.Y - SizeH / 2);
+      setPositionX(props.X - props.SizeW / 2);
+      setPositionY(props.Y - props.SizeH / 2);
     }
-  }, [props, MouseClick, props.X, props.Y, SizeW, SizeH]);
+  }, [MouseClick, props]);
 
   const mouseDown = () => {
     setMouseClick(true);
@@ -24,6 +29,15 @@ const Box = (props) => {
   const mouseUp = () => {
     setMouseClick(false);
     // console.log("up");
+    ref.set({
+      LayerName: props.LayerName,
+      BackgroundColor: props.BackgroundColor,
+      SizeW: props.SizeW,
+      SizeH: props.SizeH,
+      PositionX: PositionX,
+      PositionY: PositionY,
+      zIndex: props.zIndex,
+    });
   };
 
   return (
@@ -32,18 +46,14 @@ const Box = (props) => {
       onMouseDown={() => mouseDown()}
       onMouseUp={() => mouseUp()}
       style={{
-        width: parseInt(SizeW),
-        height: parseInt(SizeH),
+        width: parseInt(props.SizeW),
+        height: parseInt(props.SizeH),
         left: parseInt(PositionX),
         top: parseInt(PositionY),
-        backgroundColor: BackgroundColor,
+        backgroundColor: props.BackgroundColor,
+        zIndex: props.zIndex,
       }}
-    >
-      {/* <span />
-      <span />
-      <span />
-      <span /> */}
-    </div>
+    ></div>
   );
 };
 

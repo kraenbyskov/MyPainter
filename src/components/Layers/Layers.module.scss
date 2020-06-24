@@ -4,7 +4,7 @@
         text-align: center;
     }
 
-    width: 200px;
+    width: 300px;
     height: 600px;
     border: 2px solid black;
     position: absolute;
@@ -56,33 +56,79 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        cursor: pointer;
+
+        &:hover {
+            background: gray;
+        }
 
         &_Controls {
             width: 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
 
-            span {
+        &_color {
+            width: 20px;
+            height: 20px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            cursor: pointer;
+        }
 
-                width: 20px;
-                height: 20px;
-                justify-content: center;
-                align-items: center;
-                display: flex;
+        &_Arrow {
+            display: block;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            display: block;
+
+            i {
+                height: 10px;
+                font-size: 10px;
+                display: block;
+                margin-bottom: 2px;
+                padding: 2px 5px;
+                border: 1px solid black;
+                background: white;
                 cursor: pointer;
 
-                p {
-                    text-align: center;
-                    margin: 0px;
-                    padding: 0px;
+                &:hover {
+                    border: 1px solid white;
+                    background: black;
+                    color: white;
                 }
 
-                &:nth-child(2) {
-                    border: 1px solid black;
-                    color: black;
-                    text-align: center;
-                }
+            }
+
+        }
+
+        &_Number {
+            background: white;
+            margin: 0px 10px 0px -30px;
+            padding: 5px;
+            border: 1px solid black;
+        }
+
+        &_Delete {
+            width: 20px;
+            height: 20px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            padding: 2px;
+            cursor: pointer;
+            border: 1px solid black;
+            color: black;
+            background: white;
+            text-align: center;
+
+            &:hover {
+                border: 1px solid white;
+                background: black;
+                color: white;
             }
         }
 

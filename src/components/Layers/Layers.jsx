@@ -4,7 +4,10 @@ import { firebase } from "../../global/Firebase/config";
 import Layer from "./Layer";
 
 const Layers = (props) => {
-  const [Layers, setLayers] = useState(null);
+  let sorted = null;
+  if (props) {
+    sorted = props.Data.sort((a, b) => b["zIndex"] - a["zIndex"]);
+  }
 
   const ref = firebase
     .firestore()
@@ -12,55 +15,31 @@ const Layers = (props) => {
     .doc("Kræn Byskov")
     .collection("Pages");
 
-  const onCollection = (querySnapshot) => {
-    const Layer = [];
-    querySnapshot.forEach((doc) => {
-      const { LayerName, BackgroundColor } = doc.data();
-      // console.log(doc.id);
-      Layer.push({
-        id: doc.id,
-        LayerName,
-        BackgroundColor,
-      });
-      setLayers({
-        Layer,
-      });
-    });
-  };
-
-  useEffect(() => {
-    ref.onSnapshot(onCollection);
-    // eslint-disable-next-line
-  }, []);
-
   const AddLayer = () => {
-    ref.doc("Layer3").set({
-      BackgroundColor: "#0000FF",
-      LayerName: "Box3",
-      PositionX: 300,
-      PositionY: 350,
-      SizeH: 200,
+    ref.doc().set({
+      BackgroundColor: "#FF0000",
+      LayerName: "New Layer",
+      PositionX: 250,
+      PositionY: 250,
+      SizeH: 100,
       SizeW: 100,
+      zIndex: 1,
     });
   };
 
   return (
     <div className={style.Layers}>
       <h2>Layers</h2>
-      {Layers
-        ? Layers.Layer.map(({ BackgroundColor, LayerName, id }) => (
-            <Layer
-              Focus={props.GetLayerId}
-              key={LayerName}
-              Name={LayerName}
-              id={id}
-              Color={BackgroundColor}
-            />
+      {sorted
+        ? sorted.map((Data) => (
+            <Layer Focus={props.GetLayerId} key={Layer.id} Data={Data} />
           ))
         : null}
       <div className={style.Layers_Add}>
         <p>Add Layer</p>
-        <span onClick={() => AddLayer()}>+</span>
+        <span onClick={() => AddLayer()}>
+          <i class="fas fa-plus"></i>
+        </span>
       </div>
     </div>
   );

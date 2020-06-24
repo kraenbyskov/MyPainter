@@ -3,12 +3,12 @@ import style from "./EditLayers.module.scss";
 import { firebase } from "../../global/Firebase/config";
 
 const EditLayers = (props) => {
-  const [Layers, setLayers] = useState(null);
   const [LayerName, setLayerName] = useState(null);
   const [BackgroundColor, setBackgroundColor] = useState(null);
   const [SizeW, setSizeW] = useState(null);
   const [SizeH, setSizeH] = useState(null);
   const [Position, setPosition] = useState(null);
+  const [zIndex, setzIndex] = useState(null);
   const ref = firebase
     .firestore()
     .collection("Users")
@@ -24,6 +24,7 @@ const EditLayers = (props) => {
         setBackgroundColor(board.BackgroundColor);
         setSizeW(board.SizeW);
         setSizeH(board.SizeH);
+        setzIndex(board.zIndex);
         setPosition({ X: board.PositionX, Y: board.PositionY });
       } else {
         console.log("No such document!");
@@ -31,7 +32,6 @@ const EditLayers = (props) => {
     });
     // eslint-disable-next-line
   }, [props.Id]);
-  console.log(SizeW, SizeH);
 
   const onSubmit = () => {
     ref.set({
@@ -41,10 +41,10 @@ const EditLayers = (props) => {
       SizeH,
       PositionX: Position.X,
       PositionY: Position.Y,
+      zIndex,
     });
   };
 
-  console.log(Layers);
   return (
     <div className={style.EditLayers}>
       <h2>Edit Layer</h2>
@@ -66,7 +66,7 @@ const EditLayers = (props) => {
         name="background"
         onChange={(e) => setBackgroundColor(e.target.value)}
       />
-      <label htmlFor="Width">Width Color</label>
+      <label htmlFor="Width">Width</label>
       <input
         value={SizeW ? SizeW : "no value"}
         type="number"
@@ -74,14 +74,13 @@ const EditLayers = (props) => {
         onChange={(e) => setSizeW(e.target.value)}
       />
 
-      <label htmlFor="Height">Height Color</label>
+      <label htmlFor="Height">Height</label>
       <input
         value={SizeH ? SizeH : "no value"}
         type="number"
         name="Height"
         onChange={(e) => setSizeH(e.target.value)}
       />
-
       <div onClick={onSubmit} className={style.EditLayers_button}>
         Submit
       </div>

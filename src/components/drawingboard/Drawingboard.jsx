@@ -1,62 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import style from "./Drawingboard.module.scss";
-import { firebase } from "../../global/Firebase/config";
 import useMouse from "@react-hook/mouse-position";
 import Box from "./Box.jsx";
 
-const Drawingboard = () => {
+const Drawingboard = (props) => {
   const TrackMouse = React.useRef(null);
   const mouse = useMouse(TrackMouse, {
     enterDelay: 100,
     leaveDelay: 100,
   });
 
-  const [Layers, setLayers] = useState(null);
-
-  const GetData = firebase
-    .firestore()
-    .collection("Users")
-    .doc("Kræn Byskov")
-    .collection("Pages");
-
-  const onCollection = (querySnapshot) => {
-    const Layer = [];
-    querySnapshot.forEach((doc) => {
-      const {
-        LayerName,
-        BackgroundColor,
-        PositionX,
-        PositionY,
-        SizeH,
-        SizeW,
-      } = doc.data();
-      Layer.push({
-        id: doc.id,
-        LayerName,
-        BackgroundColor,
-        PositionX,
-        PositionY,
-        SizeH,
-        SizeW,
-      });
-      setLayers({
-        Layer,
-      });
-    });
-  };
-
-  useEffect(() => {
-    GetData.onSnapshot(onCollection);
-    // eslint-disable-next-line
-  }, []);
-
   return (
     <div ref={TrackMouse} className={style.Drawingboard}>
-      {Layers
-        ? Layers.Layer.map(
-            ({ BackgroundColor, PositionX, PositionY, SizeH, SizeW, id }) => (
+      {props.Data
+        ? props.Data.map(
+            ({
+              LayerName,
+              id,
+              zIndex,
+              BackgroundColor,
+              PositionX,
+              PositionY,
+              SizeW,
+              SizeH,
+            }) => (
               <Box
+                LayerName={LayerName}
                 key={id}
+                Id={id}
+                zIndex={zIndex}
                 X={mouse.x}
                 Y={mouse.y}
                 BackgroundColor={BackgroundColor}
