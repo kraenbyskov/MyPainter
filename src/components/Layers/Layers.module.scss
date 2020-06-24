@@ -59,7 +59,7 @@
         cursor: pointer;
 
         &:hover {
-            background: gray;
+            background: lighten($color: #000000, $amount: 75);
         }
 
         &_Controls {
