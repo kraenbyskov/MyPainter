@@ -17,7 +17,7 @@ const Layer = (props) => {
     .doc(props.Data.id);
 
   const DeleteItem = () => {
-    ref.doc(props.Data.id).delete();
+    ref.delete();
   };
 
   const FocusLayer = () => {
