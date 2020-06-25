@@ -9,12 +9,12 @@ import Header from "../../components/Header/Header";
 
 const FrontPage = () => {
   const [GetData, setGetData] = useState(null);
+  const [HaveFocus, setHaveFocus] = useState(false);
 
   useEffect(() => {
     CollectData({ setState: setGetData });
   }, []);
   if (GetData) {
-    // console.log(GetData);
   }
   const [LayerId, setLayerId] = useState("Layer1");
   return (
@@ -23,7 +23,7 @@ const FrontPage = () => {
         <div className={style.Front_Container}>
           <Header />
           <Layers GetLayerId={setLayerId} Data={GetData.Data} id={GetData.id} />
-          <Drawingboard Data={GetData.Data} />
+          <Drawingboard GetLayerId={setLayerId} Data={GetData.Data} />
           <EditLayers Id={LayerId} />
         </div>
       ) : null}

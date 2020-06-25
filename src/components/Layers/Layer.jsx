@@ -45,6 +45,23 @@ const Layer = (props) => {
 
   const onChange = (e, setState) => {
     setState(e.target.value);
+  };
+
+  const onKeyPress = (e) => {
+    //See notes about 'which' and 'key'
+    if (e.which === 13 || e.keyCode === 13) {
+      ref.set({
+        LayerName: e.target.value,
+        BackgroundColor: props.Data.BackgroundColor,
+        SizeW: props.Data.SizeW,
+        SizeH: props.Data.SizeH,
+        PositionX: props.Data.PositionX,
+        PositionY: props.Data.PositionY,
+        zIndex: props.Data.zIndex,
+      });
+    }
+  };
+  const OnBlur = (e) => {
     ref.set({
       LayerName: e.target.value,
       BackgroundColor: props.Data.BackgroundColor,
@@ -65,6 +82,8 @@ const Layer = (props) => {
       <input
         onChange={(e) => onChange(e, setName)}
         value={Name ? Name : null}
+        onKeyPress={(event) => onKeyPress(event)}
+        onBlur={(event) => OnBlur(event)}
       />
       <div className={style.Layer_Controls}>
         <p className={style.Layer_Number}>{props.Data.zIndex}</p>

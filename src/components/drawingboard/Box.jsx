@@ -40,8 +40,13 @@ const Box = (props) => {
     });
   };
 
+  const FocusLayer = () => {
+    props.Focus(props.Id);
+  };
+
   return (
     <div
+      onClick={FocusLayer}
       className={style.firstBox}
       onMouseDown={() => mouseDown()}
       onMouseUp={() => mouseUp()}

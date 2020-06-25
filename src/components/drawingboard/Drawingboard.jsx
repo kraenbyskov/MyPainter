@@ -26,6 +26,7 @@ const Drawingboard = (props) => {
             }) => (
               <Box
                 LayerName={LayerName}
+                Focus={props.GetLayerId}
                 key={id}
                 Id={id}
                 zIndex={zIndex}
