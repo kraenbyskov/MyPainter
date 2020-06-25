@@ -9,7 +9,7 @@ import Header from "../../components/Header/Header";
 
 const FrontPage = () => {
   const [GetData, setGetData] = useState(null);
-  const [HaveFocus, setHaveFocus] = useState(false);
+  // const [HaveFocus, setHaveFocus] = useState(false);
 
   useEffect(() => {
     CollectData({ setState: setGetData });
