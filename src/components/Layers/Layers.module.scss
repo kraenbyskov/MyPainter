@@ -1,28 +1,49 @@
 .Layers {
+    position: relative;
+    width: 100%;
+    grid-area: left;
+
+
     h2 {
         text-transform: uppercase;
         text-align: center;
     }
 
-    width: 300px;
-    height: 600px;
-    border: 2px solid black;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translate(0%, -50%);
+
+
+    &_Container {
+        height: 87vh;
+        overflow-y: scroll;
+
+    }
+
+    &_Container::-webkit-scrollbar {
+        width: 0px;
+
+        &-thumb {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            background: var(--dark-blue);
+        }
+
+        &-track-piece:end {
+            margin-bottom: 100px;
+        }
+    }
 
 
     &_Add {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        position: absolute;
-        width: 100%;
+        background: var(--dark-blue);
+        color: var(--white);
+        position: fixed;
         bottom: 0;
+        width: 15%;
 
-        background: black;
-        color: white;
+
+
 
         p {
             margin-left: 10px;
@@ -32,26 +53,24 @@
             width: 20px;
             margin-right: 10px;
             height: 20px;
-            border: 1px solid white;
             justify-content: center;
             align-items: center;
             display: flex;
             cursor: pointer;
 
             &:hover {
-                background: white;
-                border: 1px solid green;
-                color: green;
-
-
+                color: var(--gray);
             }
         }
     }
 
+
     .Layer {
-        background: lightgray;
+        background: lighten(#313E63, 2);
+        color: var(--white);
+
         padding: 10px;
-        margin: 5px;
+        margin: 5px 0px;
         position: relative;
         display: flex;
         justify-content: space-between;
@@ -59,8 +78,19 @@
         cursor: pointer;
 
         &:hover {
-            background: lighten($color: #000000,
-                    $amount: 75);
+            background: lighten(#313E63, 4);
+        }
+
+        input {
+            background: transparent;
+            border: 0;
+            padding: 3px;
+            width: auto;
+
+            &:focus {
+                border-bottom: 2px solid var(--light-blue);
+                outline: none;
+            }
         }
 
         &_Controls {
@@ -92,14 +122,10 @@
                 display: block;
                 margin-bottom: 2px;
                 padding: 2px 5px;
-                border: 1px solid black;
-                background: white;
                 cursor: pointer;
 
                 &:hover {
-                    border: 1px solid white;
-                    background: black;
-                    color: white;
+                    color: var(--gray);
                 }
 
             }
@@ -107,10 +133,8 @@
         }
 
         &_Number {
-            background: white;
             margin: 0px 10px 0px -30px;
             padding: 5px;
-            border: 1px solid black;
         }
 
         &_Delete {
@@ -121,15 +145,11 @@
             display: flex;
             padding: 2px;
             cursor: pointer;
-            border: 1px solid black;
-            color: black;
-            background: white;
+            color: var(--white);
             text-align: center;
 
             &:hover {
-                border: 1px solid white;
-                background: black;
-                color: white;
+                color: var(--gray);
             }
         }
 

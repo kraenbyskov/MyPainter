@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Typografi
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900');
+
+* {
+    font-family: 'Lato', sans-serif;
+    color: var(--text);
+
+}
+
+
+a {
+    text-decoration: none;
+    color: var(--text);
+}
+
+
+h1 {
+    margin: 0;
+}

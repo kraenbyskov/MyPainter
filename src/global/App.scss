@@ -1,0 +1,61 @@
+/**
+ * React Website Portfolio
+ * Last update: 31/01/2020
+ * Author: Kræn Byskov kraenbyskov@gmail.com
+ *
+ */
+
+/* ==========================================================================
+   Import
+   ========================================================================== */
+/* Normalize */
+@import "./sass/imports/Normalize";
+/* Color */
+@import "./sass/imports/color";
+/* Typografi */
+@import "./sass/imports/typografi";
+/* Mixing */
+@import "./sass/imports/mixing";
+/* Gradient */
+@import "./sass/imports/gradient";
+/* Transition */
+@import "./sass/imports/transition";
+
+/* ==========================================================================
+   Gradient - How to use 
+   
+   @include linear-gradient(#31B7D7, #EDAC7D);
+   @include linear-gradient(to right, #E47D7D 0%, #C195D3 50%, #4FB4E8 100%);
+   @include linear-gradient(42deg, #B58234 0%, #D2B545 50%, #D7C04D 50.01%, #FFFFFF 100%);
+
+   KeyFrames – How to use it 
+
+   @keyframes Name {
+   0%   {top: -200px;}
+   100%   {top: 200px;}
+   }
+
+   Media Query - How to use it 
+
+   @include respond-below(xs) {}
+   @include respond-between(xs, sm) {}
+   @include respond-above(sm) {}
+
+   Transition - How to use it
+
+   @include transition;
+   @include transition(all, 0.35s, cubic-bezier(.35, 0, .1, 1));
+   
+   Math - How to use it 
+
+   pi()
+   pow($number, $exp)
+   fact($number)
+   rad($angle)
+   sin($angle)
+   cos($angle)
+   tan($angle)
+   percentage($number)
+
+  App styling
+   ========================================================================== */

@@ -1,29 +1,85 @@
 .EditLayers {
-    width: 200px;
-    height: 600px;
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translate(0%, -50%);
-    border: 2px solid black;
+    width: 100%;
+    grid-area: right;
+    color: var(--white);
 
     h2 {
         text-transform: uppercase;
-        text-align: center;
+        background: var(--dark-blue);
+        padding: 15px 20px;
     }
 
-    label,
-    input {
-        display: flex;
-        justify-content: center;
+
+    &_Controls {
+        display: inline-flex;
+        justify-content: space-between;
         align-items: center;
-        margin: 0 auto;
+        width: 90%;
+        padding: 10px;
+        overflow: hidden;
+
+        span {
+            width: 20px;
+            height: 20px;
+            display: block;
+            border-radius: 20px;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        &_input {
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            width: 100px;
+            padding: 10px 15px;
+            background: var(--dark-blue);
+            border-radius: 50px;
+
+
+
+
+            p {
+                left: 20px;
+                color: var(--light-blue);
+                font-weight: bold;
+                position: absolute;
+                margin: 0;
+            }
+
+            input {
+                border: 0px;
+                // padding: 10px;
+                text-align: center;
+                background: transparent;
+                width: 100px;
+
+                &:focus {
+                    outline: none;
+                }
+
+                &:required {
+                    box-shadow: none;
+
+                }
+            }
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+
+        }
+
     }
 
-    input {
-        padding: 10px;
-        text-align: center;
-    }
+
+
 
     &_button {
         padding: 10px;

@@ -1,0 +1,38 @@
+/* ==========================================================================
+    Table of Contents
+        - Hex to RGB calc
+        - Color mixing
+        - Light Theme
+        - Dark Theme
+   ========================================================================== */
+
+/* Hex to RGB calc */
+
+@function hexToRGB($hex) {
+    @return red($hex),
+    green($hex),
+    blue($hex);
+}
+
+
+/* color mixing
+========================================================================== */
+
+:root {
+
+    // Hex Color
+    --blue: #313E63;
+    --light-blue: #6389DA;
+    --dark-blue: #1C233C;
+    --pink: #C853FF;
+    --white: #F1F3F9;
+    --gray: #D9DDE6;
+
+    // RGB Color
+    --blue-rgb:#{hexToRGB(#313E63)};
+    --light-blue-rgb:#{hexToRGB(#6389DA)};
+    --dark-blue-rgb:#{hexToRGB(#1C233C)};
+    --pink-rgb:#{hexToRGB(#C853FF)};
+    --white-rgb:#{hexToRGB(#F0F3F9)};
+    --gray-rgb:#{hexToRGB(#D9DDE6)};
+}

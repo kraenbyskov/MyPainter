@@ -1,13 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./Layers.module.scss";
 import { firebase } from "../../global/Firebase/config";
 
 const Layer = (props) => {
-  let border = {
-    border: "1px solid black",
-  };
-
-  console.log(props);
+  const [Name, setName] = useState(props.Data.LayerName);
 
   const ref = firebase
     .firestore()
@@ -22,9 +18,6 @@ const Layer = (props) => {
 
   const FocusLayer = () => {
     props.Focus(props.Data.id);
-    border = {
-      border: "1px solid red",
-    };
   };
 
   const MoveLayerUp = () => {
@@ -50,13 +43,29 @@ const Layer = (props) => {
     });
   };
 
+  const onChange = (e, setState) => {
+    setState(e.target.value);
+    ref.set({
+      LayerName: e.target.value,
+      BackgroundColor: props.Data.BackgroundColor,
+      SizeW: props.Data.SizeW,
+      SizeH: props.Data.SizeH,
+      PositionX: props.Data.PositionX,
+      PositionY: props.Data.PositionY,
+      zIndex: props.Data.zIndex,
+    });
+  };
+
   return (
-    <div onClick={FocusLayer} style={border} className={style.Layer}>
-      <span
-        className={style.Layer_color}
-        style={{ backgroundColor: props.Data.BackgroundColor }}
+    <div
+      onClick={FocusLayer}
+      style={{ borderLeft: "4px solid" + props.Data.BackgroundColor }}
+      className={style.Layer}
+    >
+      <input
+        onChange={(e) => onChange(e, setName)}
+        value={Name ? Name : null}
       />
-      {props.Data.LayerName}
       <div className={style.Layer_Controls}>
         <p className={style.Layer_Number}>{props.Data.zIndex}</p>
         <div className={style.Layer_Arrow}>
@@ -64,7 +73,7 @@ const Layer = (props) => {
           <i onClick={MoveLayerDown} className="fas fa-sort-down"></i>
         </div>
         <span className={style.Layer_Delete} onClick={() => DeleteItem()}>
-          <i class="fas fa-trash-alt"></i>
+          <i className="fas fa-trash-alt"></i>
         </span>
       </div>
     </div>

@@ -29,16 +29,17 @@ const Layers = (props) => {
 
   return (
     <div className={style.Layers}>
-      <h2>Layers</h2>
-      {sorted
-        ? sorted.map((Data) => (
-            <Layer Focus={props.GetLayerId} key={Layer.id} Data={Data} />
-          ))
-        : null}
+      <div className={style.Layers_Container}>
+        {sorted
+          ? sorted.map((Data) => (
+              <Layer Focus={props.GetLayerId} key={Data.id} Data={Data} />
+            ))
+          : null}
+      </div>
       <div className={style.Layers_Add}>
         <p>Add Layer</p>
         <span onClick={() => AddLayer()}>
-          <i class="fas fa-plus"></i>
+          <i className="fas fa-plus"></i>
         </span>
       </div>
     </div>

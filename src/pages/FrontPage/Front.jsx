@@ -4,7 +4,8 @@ import style from "./Front.module.scss";
 import Drawingboard from "../../components/drawingboard/Drawingboard";
 import Layers from "../../components/Layers/Layers";
 import EditLayers from "../../components/Editlayers/EditLayers";
-import CollectData from "../../components/CollectData/CollectData";
+import CollectData from "../../global/CollectData/CollectData";
+import Header from "../../components/Header/Header";
 
 const FrontPage = () => {
   const [GetData, setGetData] = useState(null);
@@ -19,10 +20,11 @@ const FrontPage = () => {
   return (
     <div className={style.Front}>
       {GetData ? (
-        <div>
-          <EditLayers Id={LayerId} />
-          <Drawingboard Data={GetData.Data} />
+        <div className={style.Front_Container}>
+          <Header />
           <Layers GetLayerId={setLayerId} Data={GetData.Data} id={GetData.id} />
+          <Drawingboard Data={GetData.Data} />
+          <EditLayers Id={LayerId} />
         </div>
       ) : null}
     </div>
