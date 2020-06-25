@@ -3,7 +3,6 @@ import style from "./EditLayers.module.scss";
 import { firebase } from "../../global/Firebase/config";
 
 const EditLayers = (props) => {
-  const [EditData, setData] = useState(null);
   const [LayerName, setLayerName] = useState(null);
   const [BackgroundColor, setBackgroundColor] = useState(null);
   const [SizeW, setSizeW] = useState(null);
@@ -22,7 +21,6 @@ const EditLayers = (props) => {
     ref.get().then((doc) => {
       if (doc.exists) {
         const board = doc.data();
-        setData(board);
         setLayerName(board.LayerName);
         setBackgroundColor(board.BackgroundColor);
         setSizeW(board.SizeW);
