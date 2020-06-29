@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import style from "./EditLayers.module.scss";
 import { firebase } from "../../global/Firebase/config";
+import ColorPicker from "./ColorPicker";
 
 const EditLayers = (props) => {
   const [LayerName, setLayerName] = useState(null);
@@ -158,6 +159,7 @@ const EditLayers = (props) => {
           />
         </div>
       </div>
+      <ColorPicker />
     </div>
   );
 };
