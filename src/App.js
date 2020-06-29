@@ -1,14 +1,14 @@
 import React from "react";
-import Router from "./global/Router/Router";
-import { BrowserRouter } from "react-router-dom";
+import Routers from "./global/Router/Router";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./global/App.scss";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <Router>
+        <Routers />
+      </Router>
     </div>
   );
 }

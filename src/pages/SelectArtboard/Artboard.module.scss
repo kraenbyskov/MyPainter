@@ -1,0 +1,34 @@
+@import "../../global/sass/imports/gradient";
+
+.ArtboardSelector {
+    width: 100%;
+    height: 100vh;
+    background-image: url("https://source.unsplash.com/user/mvds");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+
+    &:after {
+        left: 0;
+        top: 0;
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100vh;
+        background: rgba(var(--dark-blue-rgb), 0.5);
+
+    }
+
+    &_container {
+        width: 40%;
+        height: 60%;
+        z-index: 100;
+        padding: 50px;
+        @include linear-gradient(160deg, var(--blue) 20%, var(--dark-blue) 70%);
+        border-radius: 20px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

@@ -1,13 +1,21 @@
 import FrontPage from "../../pages/FrontPage/Front";
+import Artboard from "../../pages/SelectArtboard/Artboard";
 
 const Routes = [
   {
+    id: 1,
+    name: "Artboard",
+    path: "/Artboard",
+    exact: false,
+    component: Artboard,
+  },
+  {
+    id: 2,
     name: "FrontPage",
-    Path: "/",
+    path: "/",
     exact: true,
-    display: false,
     component: FrontPage,
   },
 ];
 
-export default Routes;
+export { Routes };
