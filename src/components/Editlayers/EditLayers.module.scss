@@ -17,12 +17,14 @@
         width: 90%;
         padding: 10px;
         overflow: hidden;
+        position: relative;
 
         span {
-            width: 20px;
+            width: 40px;
             height: 20px;
             display: block;
-            border-radius: 20px;
+            border-radius: 13px;
+            border: 6px solid var(--dark-blue);
         }
 
         p {
@@ -56,6 +58,8 @@
                 text-align: center;
                 background: transparent;
                 width: 100px;
+                color: var(--white);
+
 
                 &:focus {
                     outline: none;
@@ -74,6 +78,24 @@
             }
 
 
+        }
+
+        &_colorPicker {
+            width: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5%;
+            overflow-x: hidden;
+
+            &_closeButton {
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                overflow: hidden;
+            }
         }
 
     }

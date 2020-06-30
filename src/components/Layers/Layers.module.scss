@@ -15,6 +15,7 @@
         height: 87vh;
         overflow-y: scroll;
 
+
     }
 
     &_Container::-webkit-scrollbar {
@@ -86,6 +87,9 @@
             border: 0;
             padding: 3px;
             width: auto;
+            color: var(--white);
+            cursor: pointer;
+
 
             &:focus {
                 border-bottom: 2px solid var(--light-blue);
