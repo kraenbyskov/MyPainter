@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import style from "./EditLayers.module.scss";
 import { firebase } from "../../global/Firebase/config";
+import { SketchPicker } from "react-color";
 
 const EditLayers = (props) => {
   const [LayerName, setLayerName] = useState(null);
-  const [BackgroundColor, setBackgroundColor] = useState(null);
+  const [BackgroundColor, setBackgroundColor] = useState({
+    background: "#FFFFFF",
+  });
   const [SizeW, setSizeW] = useState(null);
   const [SizeH, setSizeH] = useState(null);
   const [PositionX, setPositionX] = useState(null);
   const [PositionY, setPositionY] = useState(null);
   const [zIndex, setzIndex] = useState(null);
+  const [displayColorPicker, setdisplayColorPicker] = useState(false);
+
   const ref = firebase
     .firestore()
     .collection("Users")
@@ -22,7 +27,7 @@ const EditLayers = (props) => {
       if (doc.exists) {
         const board = doc.data();
         setLayerName(board.LayerName);
-        setBackgroundColor(board.BackgroundColor);
+        setBackgroundColor({ background: board.BackgroundColor });
         setSizeW(board.SizeW);
         setSizeH(board.SizeH);
         setzIndex(board.zIndex);
@@ -83,17 +88,26 @@ const EditLayers = (props) => {
       zIndex,
     });
   };
-  const onChangeColor = (e, setState) => {
-    setState(e.target.value);
+
+  const handleChangeComplete = (color) => {
+    setBackgroundColor({ background: color.hex });
     ref.set({
       LayerName: LayerName,
-      BackgroundColor: e.target.value,
+      BackgroundColor: color.hex,
       SizeW: SizeW,
       SizeH: SizeH,
       PositionX: PositionX,
       PositionY: PositionY,
       zIndex,
     });
+  };
+
+  const handleClick = () => {
+    setdisplayColorPicker(!displayColorPicker);
+  };
+
+  const handleClose = () => {
+    setdisplayColorPicker(false);
   };
 
   return (
@@ -145,18 +159,32 @@ const EditLayers = (props) => {
       <div className={style.EditLayers_Controls}>
         <p>Background Color</p>
         <span
+          onClick={handleClick}
           style={{
-            backgroundColor: BackgroundColor ? BackgroundColor : "#FFFFFF",
+            backgroundColor: BackgroundColor
+              ? BackgroundColor.background
+              : "#FFFFFF",
           }}
         />
-        <div className={style.EditLayers_Controls_input}>
-          <input
-            value={BackgroundColor ? BackgroundColor : "no value"}
-            type="text"
-            name="background"
-            onChange={(e) => onChangeColor(e, setBackgroundColor)}
-          />
-        </div>
+      </div>
+
+      <div className={style.EditLayers_Controls_colorPicker}>
+        {displayColorPicker ? (
+          <div>
+            <div
+              className={style.EditLayers_Controls_colorPicker_closeButton}
+              onClick={handleClose}
+            />
+            <SketchPicker
+              color={BackgroundColor.background}
+              onChangeComplete={handleChangeComplete}
+              disableAlpha={true}
+              presetColors={[{ color: "#f00", title: "red" }]}
+              width={"100%"}
+              style={{ background: "green" }}
+            />
+          </div>
+        ) : null}
       </div>
     </div>
   );
