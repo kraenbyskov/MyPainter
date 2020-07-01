@@ -4,6 +4,7 @@
     background: var(--white);
     grid-area: main;
     overflow: hidden;
+    z-index: 0;
 }
 
 .firstBox {

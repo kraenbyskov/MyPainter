@@ -1,5 +1,6 @@
 import FrontPage from "../../pages/FrontPage/Front";
 import Artboard from "../../pages/SelectArtboard/Artboard";
+import Drag from "../../pages/Drag/Drag";
 
 const Routes = [
   {
@@ -15,6 +16,13 @@ const Routes = [
     path: "/",
     exact: true,
     component: FrontPage,
+  },
+  {
+    id: 3,
+    name: "Drag",
+    path: "/Drag",
+    exact: false,
+    component: Drag,
   },
 ];
 
