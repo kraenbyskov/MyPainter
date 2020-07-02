@@ -1,102 +1,153 @@
-import React, { useState } from "react";
-import style from "./Layers.module.scss";
+import React, { useImperativeHandle, useRef, useState } from "react";
+import { DragSource, DropTarget } from "react-dnd";
 import { firebase } from "../../global/Firebase/config";
+import { ItemTypes } from "./ItemTypes";
+import style from "./Layers.module.scss";
 
-const Layer = (props) => {
-  const [Name, setName] = useState(props.Data.LayerName);
+const Card = React.forwardRef(
+  (
+    { Focus, AllData, Data, index, connectDragSource, connectDropTarget },
+    ref
+  ) => {
+    const FocusLayer = () => {
+      Focus(Data.id);
+    };
 
-  const ref = firebase
-    .firestore()
-    .collection("Users")
-    .doc("Kræn Byskov")
-    .collection("Pages")
-    .doc(props.Data.id);
+    const [Name, setName] = useState(Data.LayerName);
 
-  const DeleteItem = () => {
-    ref.delete();
-  };
+    const firebaseRef = firebase
+      .firestore()
+      .collection("Users")
+      .doc("Kræn Byskov")
+      .collection("Pages")
+      .doc(Data.id);
 
-  const FocusLayer = () => {
-    props.Focus(props.Data.id);
-  };
+    const DeleteItem = () => {
+      firebaseRef.delete();
+    };
 
-  const MoveLayerUp = () => {
-    ref.set({
-      LayerName: props.Data.LayerName,
-      BackgroundColor: props.Data.BackgroundColor,
-      SizeW: props.Data.SizeW,
-      SizeH: props.Data.SizeH,
-      PositionX: props.Data.PositionX,
-      PositionY: props.Data.PositionY,
-      zIndex: props.Data.zIndex + 1,
-    });
-  };
-  const MoveLayerDown = () => {
-    ref.set({
-      LayerName: props.Data.LayerName,
-      BackgroundColor: props.Data.BackgroundColor,
-      SizeW: props.Data.SizeW,
-      SizeH: props.Data.SizeH,
-      PositionX: props.Data.PositionX,
-      PositionY: props.Data.PositionY,
-      zIndex: props.Data.zIndex - 1,
-    });
-  };
+    const onChange = (e, setState) => {
+      setState(e.target.value);
+    };
 
-  const onChange = (e, setState) => {
-    setState(e.target.value);
-  };
-
-  const onKeyPress = (e) => {
-    //See notes about 'which' and 'key'
-    if (e.which === 13 || e.keyCode === 13) {
-      ref.set({
+    const onKeyPress = (e) => {
+      //See notes about 'which' and 'key'
+      if (e.which === 13 || e.keyCode === 13) {
+        firebaseRef.set({
+          LayerName: e.target.value,
+          BackgroundColor: Data.BackgroundColor,
+          SizeW: Data.SizeW,
+          SizeH: Data.SizeH,
+          PositionX: Data.PositionX,
+          PositionY: Data.PositionY,
+          zIndex: Data.zIndex,
+        });
+      }
+    };
+    const OnBlur = (e) => {
+      firebaseRef.set({
         LayerName: e.target.value,
-        BackgroundColor: props.Data.BackgroundColor,
-        SizeW: props.Data.SizeW,
-        SizeH: props.Data.SizeH,
-        PositionX: props.Data.PositionX,
-        PositionY: props.Data.PositionY,
-        zIndex: props.Data.zIndex,
+        BackgroundColor: Data.BackgroundColor,
+        SizeW: Data.SizeW,
+        SizeH: Data.SizeH,
+        PositionX: Data.PositionX,
+        PositionY: Data.PositionY,
+        zIndex: index,
       });
-    }
-  };
-  const OnBlur = (e) => {
-    ref.set({
-      LayerName: e.target.value,
-      BackgroundColor: props.Data.BackgroundColor,
-      SizeW: props.Data.SizeW,
-      SizeH: props.Data.SizeH,
-      PositionX: props.Data.PositionX,
-      PositionY: props.Data.PositionY,
-      zIndex: props.Data.zIndex,
-    });
-  };
+    };
 
-  return (
-    <div
-      onClick={FocusLayer}
-      style={{ borderLeft: "4px solid" + props.Data.BackgroundColor }}
-      className={style.Layer}
-    >
-      <input
-        onChange={(e) => onChange(e, setName)}
-        value={Name ? Name : null}
-        onKeyPress={(event) => onKeyPress(event)}
-        onBlur={(event) => OnBlur(event)}
-      />
-      <div className={style.Layer_Controls}>
-        <p className={style.Layer_Number}>{props.Data.zIndex}</p>
-        <div className={style.Layer_Arrow}>
-          <i onClick={MoveLayerUp} className="fas fa-caret-up"></i>
-          <i onClick={MoveLayerDown} className="fas fa-sort-down"></i>
+    const elementRef = useRef(null);
+    connectDragSource(elementRef);
+    connectDropTarget(elementRef);
+    useImperativeHandle(ref, () => ({
+      getNode: () => elementRef.current,
+    }));
+    return (
+      <div
+        ref={elementRef}
+        onClick={FocusLayer}
+        style={{ borderLeft: "4px solid" + Data.BackgroundColor }}
+        className={style.Layer}
+      >
+        <input
+          onChange={(e) => onChange(e, setName)}
+          value={Name ? Name : null}
+          onKeyPress={(event) => onKeyPress(event)}
+          onBlur={(event) => OnBlur(event)}
+        />
+        <div className={style.Layer_Controls}>
+          <p className={style.Layer_Number}>{index} </p>
+          <p className={style.Layer_Number}> {Data.zIndex}</p>
+          <span className={style.Layer_Delete} onClick={() => DeleteItem()}>
+            <i className="fas fa-trash-alt"></i>
+          </span>
         </div>
-        <span className={style.Layer_Delete} onClick={() => DeleteItem()}>
-          <i className="fas fa-trash-alt"></i>
-        </span>
       </div>
-    </div>
-  );
-};
-
-export default Layer;
+    );
+  }
+);
+export default DropTarget(
+  ItemTypes.CARD,
+  {
+    hover(props, monitor, component) {
+      if (!component) {
+        return null;
+      }
+      // node = HTML Div element from imperative API
+      const node = component.getNode();
+      if (!node) {
+        return null;
+      }
+      const dragIndex = monitor.getItem().index;
+      const hoverIndex = props.index;
+      // Don't replace items with themselves
+      if (dragIndex === hoverIndex) {
+        return;
+      }
+      // Determine rectangle on screen
+      const hoverBoundingRect = node.getBoundingClientRect();
+      // Get vertical middle
+      const hoverMiddleY =
+        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+      // Determine mouse position
+      const clientOffset = monitor.getClientOffset();
+      // Get pixels to the top
+      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+      // Only perform the move when the mouse has crossed half of the items height
+      // When dragging downwards, only move when the cursor is below 50%
+      // When dragging upwards, only move when the cursor is above 50%
+      // Dragging downwards
+      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+        return;
+      }
+      // Dragging upwards
+      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+        return;
+      }
+      // Time to actually perform the action
+      props.moveCard(dragIndex, hoverIndex);
+      // Note: we're mutating the monitor item here!
+      // Generally it's better to avoid mutations,
+      // but it's good here for the sake of performance
+      // to avoid expensive index searches.
+      monitor.getItem().index = hoverIndex;
+    },
+  },
+  (connect) => ({
+    connectDropTarget: connect.dropTarget(),
+  })
+)(
+  DragSource(
+    ItemTypes.CARD,
+    {
+      beginDrag: (props) => ({
+        id: props.id,
+        index: props.index,
+      }),
+    },
+    (connect, monitor) => ({
+      connectDragSource: connect.dragSource(),
+      isDragging: monitor.isDragging(),
+    })
+  )(Card)
+);
