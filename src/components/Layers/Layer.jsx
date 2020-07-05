@@ -33,26 +33,14 @@ const Card = React.forwardRef(
     const onKeyPress = (e) => {
       //See notes about 'which' and 'key'
       if (e.which === 13 || e.keyCode === 13) {
-        firebaseRef.set({
+        firebaseRef.update({
           LayerName: e.target.value,
-          BackgroundColor: Data.BackgroundColor,
-          SizeW: Data.SizeW,
-          SizeH: Data.SizeH,
-          PositionX: Data.PositionX,
-          PositionY: Data.PositionY,
-          zIndex: Data.zIndex,
         });
       }
     };
     const OnBlur = (e) => {
-      firebaseRef.set({
+      firebaseRef.update({
         LayerName: e.target.value,
-        BackgroundColor: Data.BackgroundColor,
-        SizeW: Data.SizeW,
-        SizeH: Data.SizeH,
-        PositionX: Data.PositionX,
-        PositionY: Data.PositionY,
-        zIndex: index,
       });
     };
 

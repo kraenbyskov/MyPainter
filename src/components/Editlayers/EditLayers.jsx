@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import style from "./EditLayers.module.scss";
 import { firebase } from "../../global/Firebase/config";
 import { SketchPicker } from "react-color";
+import InputFields from "./inputFields";
 
 const EditLayers = (props) => {
-  const [LayerName, setLayerName] = useState(null);
   const [BackgroundColor, setBackgroundColor] = useState({
     background: "#FFFFFF",
   });
@@ -12,7 +12,6 @@ const EditLayers = (props) => {
   const [SizeH, setSizeH] = useState(null);
   const [PositionX, setPositionX] = useState(null);
   const [PositionY, setPositionY] = useState(null);
-  const [zIndex, setzIndex] = useState(null);
   const [displayColorPicker, setdisplayColorPicker] = useState(false);
 
   const ref = firebase
@@ -26,11 +25,9 @@ const EditLayers = (props) => {
     ref.get().then((doc) => {
       if (doc.exists) {
         const board = doc.data();
-        setLayerName(board.LayerName);
         setBackgroundColor({ background: board.BackgroundColor });
         setSizeW(board.SizeW);
         setSizeH(board.SizeH);
-        setzIndex(board.zIndex);
         setPositionX(board.PositionX);
         setPositionY(board.PositionY);
       } else {
@@ -38,67 +35,19 @@ const EditLayers = (props) => {
       }
     });
     // eslint-disable-next-line
-  }, [props.Id]);
+  }, [props]);
 
-  const onChangeX = (e, setState) => {
+  const onChange = (e, setState, type) => {
     setState(e.target.value);
-    ref.set({
-      LayerName: LayerName,
-      BackgroundColor: BackgroundColor,
-      SizeW: SizeW,
-      SizeH: SizeH,
-      PositionX: e.target.value,
-      PositionY: PositionY,
-      zIndex,
-    });
-  };
-  const onChangeY = (e, setState) => {
-    setState(e.target.value);
-    ref.set({
-      LayerName: LayerName,
-      BackgroundColor: BackgroundColor,
-      SizeW: SizeW,
-      SizeH: SizeH,
-      PositionX: PositionX,
-      PositionY: e.target.value,
-      zIndex,
-    });
-  };
-  const onChangeW = (e, setState) => {
-    setState(e.target.value);
-    ref.set({
-      LayerName: LayerName,
-      BackgroundColor: BackgroundColor,
-      SizeW: e.target.value,
-      SizeH: SizeH,
-      PositionX: PositionX,
-      PositionY: PositionY,
-      zIndex,
-    });
-  };
-  const onChangeH = (e, setState) => {
-    setState(e.target.value);
-    ref.set({
-      LayerName: LayerName,
-      BackgroundColor: BackgroundColor,
-      SizeW: SizeW,
-      SizeH: e.target.value,
-      PositionX: PositionX,
-      PositionY: PositionY,
-      zIndex,
+    ref.update({
+      [type]: e.target.value,
     });
   };
 
   const handleChangeComplete = (color) => {
     setBackgroundColor({ background: color.hex });
-    ref.set({
-      LayerName: LayerName,
+    ref.update({
       BackgroundColor: color.hex,
-      SizeW: SizeW,
-      SizeH: SizeH,
-      PositionX: PositionX,
-      PositionY: PositionY,
-      zIndex,
     });
   };
 
@@ -110,50 +59,62 @@ const EditLayers = (props) => {
     setdisplayColorPicker(false);
   };
 
+  const Position = [
+    {
+      Name: "X",
+      state: "PositionX",
+      Value: PositionX,
+      Change: setPositionX,
+    },
+    {
+      Name: "Y",
+      state: "PositionY",
+      Value: PositionY,
+      Change: setPositionY,
+    },
+  ];
+  const Size = [
+    {
+      Name: "W",
+      state: "SizeW",
+      Value: SizeW,
+      Change: setSizeW,
+    },
+    {
+      Name: "H",
+      state: "SizeH",
+      Value: SizeH,
+      Change: setSizeH,
+    },
+  ];
+
   return (
     <div className={style.EditLayers}>
       <div className={style.EditLayers_Controls}>
         <p>Position</p>
-        <div className={style.EditLayers_Controls_input}>
-          <p>X</p>
-          <input
-            value={PositionX ? PositionX : "no value"}
-            type="number"
-            name="Width"
-            onChange={(e) => onChangeX(e, setPositionX)}
+        {Position.map(({ Name, Value, Change, state }) => (
+          <InputFields
+            key={Name}
+            Name={Name}
+            Value={Value}
+            Change={Change}
+            state={state}
+            onChange={onChange}
           />
-        </div>
-        <div className={style.EditLayers_Controls_input}>
-          <p>Y</p>
-          <input
-            value={PositionY ? PositionY : "no value"}
-            type="number"
-            name="Width"
-            onChange={(e) => onChangeY(e, setPositionY)}
-          />
-        </div>
+        ))}
       </div>
       <div className={style.EditLayers_Controls}>
         <p>Size</p>
-        <div className={style.EditLayers_Controls_input}>
-          <p>W</p>
-          <input
-            value={SizeW ? SizeW : "no value"}
-            type="number"
-            name="Width"
-            onChange={(e) => onChangeW(e, setSizeW)}
+        {Size.map(({ Name, Value, Change, state }) => (
+          <InputFields
+            key={Name}
+            Name={Name}
+            Value={Value}
+            Change={Change}
+            state={state}
+            onChange={onChange}
           />
-        </div>
-
-        <div className={style.EditLayers_Controls_input}>
-          <p>H</p>
-          <input
-            value={SizeH ? SizeH : "no value"}
-            type="number"
-            name="Height"
-            onChange={(e) => onChangeH(e, setSizeH)}
-          />
-        </div>
+        ))}
       </div>
       <h2>Fill</h2>
       <div className={style.EditLayers_Controls}>
@@ -181,7 +142,6 @@ const EditLayers = (props) => {
               disableAlpha={true}
               presetColors={[{ color: "#f00", title: "red" }]}
               width={"100%"}
-              style={{ background: "green" }}
             />
           </div>
         ) : null}

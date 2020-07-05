@@ -26,12 +26,45 @@ const FrontPage = () => {
   //   });
   // };
 
+  const ref = firebase
+    .firestore()
+    .collection("Users")
+    .doc("Kræn Byskov")
+    .collection("Pages");
+
+  const onCollection = (querySnapshot) => {
+    const Data = [];
+    querySnapshot.forEach((doc) => {
+      const {
+        LayerName,
+        BackgroundColor,
+        PositionX,
+        PositionY,
+        SizeH,
+        SizeW,
+        zIndex,
+      } = doc.data();
+      Data.push({
+        id: doc.id,
+        LayerName,
+        BackgroundColor,
+        PositionX,
+        PositionY,
+        SizeH,
+        SizeW,
+        zIndex,
+      });
+      setGetData({
+        Data,
+      });
+    });
+  };
+
   useEffect(() => {
-    CollectData({ setState: setGetData });
+    ref.onSnapshot(onCollection);
   }, []);
-  if (GetData) {
-    console.log(GetData);
-  }
+
+  console.log(GetData);
 
   const [LayerId, setLayerId] = useState("Layer1");
   return (
