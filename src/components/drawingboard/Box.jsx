@@ -29,14 +29,9 @@ const Box = (props) => {
   const mouseUp = () => {
     setMouseClick(false);
     // console.log("up");
-    ref.set({
-      LayerName: props.LayerName,
-      BackgroundColor: props.BackgroundColor,
-      SizeW: props.SizeW,
-      SizeH: props.SizeH,
+    ref.update({
       PositionX: PositionX,
       PositionY: PositionY,
-      zIndex: props.zIndex,
     });
   };
 

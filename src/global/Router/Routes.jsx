@@ -7,14 +7,14 @@ const Routes = [
     name: "Artboard",
     path: "/Artboard",
     exact: false,
-    component: Artboard,
+    Component: Artboard,
   },
   {
     id: 2,
     name: "FrontPage",
     path: "/",
     exact: true,
-    component: FrontPage,
+    Component: FrontPage,
   },
 ];
 

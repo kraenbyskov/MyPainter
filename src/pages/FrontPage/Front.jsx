@@ -4,18 +4,51 @@ import style from "./Front.module.scss";
 import Drawingboard from "../../components/drawingboard/Drawingboard";
 import Layers from "../../components/Layers/Layers";
 import EditLayers from "../../components/Editlayers/EditLayers";
-import CollectData from "../../global/CollectData/CollectData";
 import Header from "../../components/Header/Header";
+import { firebase } from "../../global/Firebase/config";
 
 const FrontPage = () => {
   const [GetData, setGetData] = useState(null);
-  // const [HaveFocus, setHaveFocus] = useState(false);
+
+  const ref = firebase
+    .firestore()
+    .collection("Users")
+    .doc("Kræn Byskov")
+    .collection("Pages");
+
+  const onCollection = (querySnapshot) => {
+    const Data = [];
+    querySnapshot.forEach((doc) => {
+      const {
+        LayerName,
+        BackgroundColor,
+        PositionX,
+        PositionY,
+        SizeH,
+        SizeW,
+        zIndex,
+      } = doc.data();
+      Data.push({
+        id: doc.id,
+        LayerName,
+        BackgroundColor,
+        PositionX,
+        PositionY,
+        SizeH,
+        SizeW,
+        zIndex,
+      });
+      setGetData({
+        Data,
+      });
+    });
+  };
 
   useEffect(() => {
-    CollectData({ setState: setGetData });
+    ref.onSnapshot(onCollection);
+    // eslint-disable-next-line
   }, []);
-  if (GetData) {
-  }
+
   const [LayerId, setLayerId] = useState("Layer1");
   return (
     <div className={style.Front}>
