@@ -1,5 +1,13 @@
 .Header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     width: 100%;
-    height: 100px;
+    height: 75px;
     grid-area: header;
+
+    p {
+        color: white;
+        padding-right: 20px;
+    }
 }
