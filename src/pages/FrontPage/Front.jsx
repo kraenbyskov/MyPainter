@@ -5,26 +5,10 @@ import Drawingboard from "../../components/drawingboard/Drawingboard";
 import Layers from "../../components/Layers/Layers";
 import EditLayers from "../../components/Editlayers/EditLayers";
 import Header from "../../components/Header/Header";
-import CollectData from "../../global/CollectData/CollectData";
 import { firebase } from "../../global/Firebase/config";
 
 const FrontPage = () => {
   const [GetData, setGetData] = useState(null);
-  // const [HaveFocus, setHaveFocus] = useState(false);
-
-  // const ref = firebase
-  //   .firestore()
-  //   .collection("Users")
-  //   .doc("Kræn Byskov")
-  //   .collection("Pages");
-
-  // // console.log(GetData);
-
-  // const onCollection = (querySnapshot) => {
-  //   querySnapshot.forEach((doc) => {
-  //     setGetData(doc.data());
-  //   });
-  // };
 
   const ref = firebase
     .firestore()
@@ -62,9 +46,8 @@ const FrontPage = () => {
 
   useEffect(() => {
     ref.onSnapshot(onCollection);
+    // eslint-disable-next-line
   }, []);
-
-  console.log(GetData);
 
   const [LayerId, setLayerId] = useState("Layer1");
   return (

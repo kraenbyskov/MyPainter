@@ -5,10 +5,7 @@ import { ItemTypes } from "./ItemTypes";
 import style from "./Layers.module.scss";
 
 const Card = React.forwardRef(
-  (
-    { Focus, AllData, Data, index, connectDragSource, connectDropTarget },
-    ref
-  ) => {
+  ({ Focus, Data, index, connectDragSource, connectDropTarget }, ref) => {
     const FocusLayer = () => {
       Focus(Data.id);
     };
@@ -31,7 +28,6 @@ const Card = React.forwardRef(
     };
 
     const onKeyPress = (e) => {
-      //See notes about 'which' and 'key'
       if (e.which === 13 || e.keyCode === 13) {
         firebaseRef.update({
           LayerName: e.target.value,

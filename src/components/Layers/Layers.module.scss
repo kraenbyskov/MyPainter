@@ -113,33 +113,11 @@
             cursor: pointer;
         }
 
-        &_Arrow {
-            display: block;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            display: block;
 
-            i {
-                height: 10px;
-                font-size: 10px;
-                display: block;
-                margin-bottom: 2px;
-                padding: 2px 5px;
-                cursor: pointer;
-
-                &:hover {
-                    color: var(--gray);
-                }
-
-            }
-
-        }
-
-        &_Number {
-            margin: 0px 10px 0px -30px;
-            padding: 5px;
-        }
+        // &_Number {
+        //     margin: 0px 10px 0px -30px;
+        //     padding: 5px;
+        // }
 
         &_Delete {
             width: 20px;
@@ -151,6 +129,10 @@
             cursor: pointer;
             color: var(--white);
             text-align: center;
+
+            i {
+                font-size: 12px;
+            }
 
             &:hover {
                 color: var(--gray);

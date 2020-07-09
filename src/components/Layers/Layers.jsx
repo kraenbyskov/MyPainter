@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import style from "./Layers.module.scss";
-import { firebase } from "../../global/Firebase/config";
 import Layer from "./Layer";
 import update from "immutability-helper";
 import AddLayer from "../../global/AddLayer";
