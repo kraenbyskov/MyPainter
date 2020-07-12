@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import style from "./Layers.module.scss";
-import Layer from "./Layer";
+import Layer from "../Layer/Layer";
 import update from "immutability-helper";
 import AddLayer from "../../global/AddLayer";
 import { DndProvider } from "react-dnd";

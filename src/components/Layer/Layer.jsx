@@ -2,7 +2,7 @@ import React, { useImperativeHandle, useRef, useState } from "react";
 import { DragSource, DropTarget } from "react-dnd";
 import { firebase } from "../../global/Firebase/config";
 import { ItemTypes } from "./ItemTypes";
-import style from "./Layers.module.scss";
+import style from "./Layer.module.scss";
 
 const Card = React.forwardRef(
   ({ Focus, Data, index, connectDragSource, connectDropTarget }, ref) => {
