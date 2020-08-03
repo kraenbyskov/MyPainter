@@ -3,9 +3,9 @@ import { firebase } from "./Firebase/config";
 const AddLayer = () => {
   const ref = firebase
     .firestore()
-    .collection("Users")
-    .doc("Kræn Byskov")
-    .collection("Pages");
+    .collection("Artboard")
+    .doc("Testboard")
+    .collection("Layers");
 
   ref.doc().set({
     BackgroundColor: "#FF0000",

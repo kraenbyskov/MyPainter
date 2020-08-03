@@ -1,13 +1,14 @@
 import FrontPage from "../../pages/FrontPage/Front";
 import Artboard from "../../pages/SelectArtboard/Artboard";
+import VieweArtboard from "../../pages/VieweArtboard/VieweArtboard";
 
 const Routes = [
   {
     id: 1,
-    name: "Artboard",
-    path: "/Artboard",
+    name: "VieweArtboard",
+    path: "/VieweArtboard",
     exact: false,
-    Component: Artboard,
+    Component: VieweArtboard,
   },
   {
     id: 2,

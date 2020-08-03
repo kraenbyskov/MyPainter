@@ -9,9 +9,9 @@ const Box = (props) => {
 
   const ref = firebase
     .firestore()
-    .collection("Users")
-    .doc("Kræn Byskov")
-    .collection("Pages")
+    .collection("Artboard")
+    .doc("Testboard")
+    .collection("Layers")
     .doc(props.Id);
 
   useEffect(() => {
