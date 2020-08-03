@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./Layers.module.scss";
 import Layer from "./Layer";
 import update from "immutability-helper";
@@ -8,6 +8,9 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 const Layers = (props) => {
   const [cards, setCards] = useState(props.Data);
+  useEffect(() => {
+    setCards(props.Data);
+  }, [props]);
 
   const moveCard = (dragIndex, hoverIndex) => {
     const dragCard = cards[dragIndex];

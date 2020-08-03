@@ -7,12 +7,12 @@
         text-transform: uppercase;
         background: var(--dark-blue);
         padding: 15px 20px;
+        margin: 0px;
     }
 
 
     &_Controls {
         display: inline-flex;
-        justify-content: space-between;
         align-items: center;
         width: 90%;
         padding: 10px;
@@ -40,6 +40,7 @@
             padding: 10px 15px;
             background: var(--dark-blue);
             border-radius: 50px;
+            margin-right: 20px;
 
 
 

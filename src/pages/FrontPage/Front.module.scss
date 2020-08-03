@@ -16,7 +16,7 @@
         @include linear-gradient(160deg, var(--blue) 20%, var(--dark-blue) 70%);
         display: grid;
         grid-template-rows: 75px auto;
-        grid-template-columns: 15% 65% 20%;
+        grid-template-columns: 15% 70% 15%;
         grid-template-areas:
             'header header header'
             'left  main right';

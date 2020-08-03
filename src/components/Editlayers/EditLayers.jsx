@@ -90,8 +90,8 @@ const EditLayers = (props) => {
 
   return (
     <div className={style.EditLayers}>
+      <h2>Position</h2>
       <div className={style.EditLayers_Controls}>
-        <p>Position</p>
         {Position.map(({ Name, Value, Change, state }) => (
           <InputFields
             key={Name}
@@ -104,7 +104,6 @@ const EditLayers = (props) => {
         ))}
       </div>
       <div className={style.EditLayers_Controls}>
-        <p>Size</p>
         {Size.map(({ Name, Value, Change, state }) => (
           <InputFields
             key={Name}
