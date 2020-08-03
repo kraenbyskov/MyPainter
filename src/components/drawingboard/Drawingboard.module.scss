@@ -13,13 +13,20 @@
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-    border: 2px solid var(--dark-gray);
-    width: 500px;
-    height: 500px;
+    width: 700px;
+    height: 700px;
     overflow: hidden;
     background: var(--white);
-
     z-index: 100;
+    border: 2px solid var(--dark-gray);
+
+
+
+    span {
+        position: absolute;
+        top: -20px;
+        left: 0;
+    }
 }
 
 .firstBox {
