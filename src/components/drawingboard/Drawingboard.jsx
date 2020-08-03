@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Drawingboard.module.scss";
 import useMouse from "@react-hook/mouse-position";
+import Artboard from "./Artboard";
 import Box from "./Box.jsx";
 
 const Drawingboard = (props) => {
@@ -11,36 +12,40 @@ const Drawingboard = (props) => {
   });
 
   return (
-    <div ref={TrackMouse} className={style.Drawingboard}>
-      {props.Data
-        ? props.Data.map(
-            ({
-              LayerName,
-              id,
-              zIndex,
-              BackgroundColor,
-              PositionX,
-              PositionY,
-              SizeW,
-              SizeH,
-            }) => (
-              <Box
-                LayerName={LayerName}
-                Focus={props.GetLayerId}
-                key={id}
-                Id={id}
-                zIndex={zIndex}
-                X={mouse.x}
-                Y={mouse.y}
-                BackgroundColor={BackgroundColor}
-                PositionX={PositionX}
-                PositionY={PositionY}
-                SizeH={SizeH}
-                SizeW={SizeW}
-              />
-            )
-          )
-        : null}
+    <div className={style.Drawingboard}>
+      <Artboard>
+        <div ref={TrackMouse}>
+          {props.Data
+            ? props.Data.map(
+                ({
+                  LayerName,
+                  id,
+                  zIndex,
+                  BackgroundColor,
+                  PositionX,
+                  PositionY,
+                  SizeW,
+                  SizeH,
+                }) => (
+                  <Box
+                    LayerName={LayerName}
+                    Focus={props.GetLayerId}
+                    key={id}
+                    Id={id}
+                    zIndex={zIndex}
+                    X={mouse.x}
+                    Y={mouse.y}
+                    BackgroundColor={BackgroundColor}
+                    PositionX={PositionX}
+                    PositionY={PositionY}
+                    SizeH={SizeH}
+                    SizeW={SizeW}
+                  />
+                )
+              )
+            : null}
+        </div>
+      </Artboard>
     </div>
   );
 };

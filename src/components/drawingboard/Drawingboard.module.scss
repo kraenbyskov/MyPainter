@@ -1,10 +1,25 @@
 .Drawingboard {
     position: relative;
     width: 100%;
-    background: var(--white);
+    height: 100%;
+    background: var(--gray-blue);
     grid-area: main;
     overflow: hidden;
     z-index: 0;
+}
+
+.Artboard {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    border: 2px solid var(--dark-gray);
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    background: var(--white);
+
+    z-index: 100;
 }
 
 .firstBox {
