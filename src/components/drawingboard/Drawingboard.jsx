@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Drawingboard.module.scss";
 import useMouse from "@react-hook/mouse-position";
-import Artboard from "./Artboard";
+// import Artboard from "./Artboard";
 import Box from "./Box.jsx";
 
 const Drawingboard = (props) => {
