@@ -10,7 +10,7 @@ const Box = (props) => {
   const ref = firebase
     .firestore()
     .collection("Artboard")
-    .doc("Testboard")
+    .doc(props.ArtboardID)
     .collection("Layers")
     .doc(props.Id);
 

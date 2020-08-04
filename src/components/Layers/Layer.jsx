@@ -5,18 +5,23 @@ import { ItemTypes } from "./ItemTypes";
 import style from "./Layers.module.scss";
 
 const Card = React.forwardRef(
-  ({ Focus, Data, index, connectDragSource, connectDropTarget }, ref) => {
+  (
+    { ArtboardId, Focus, Data, index, connectDragSource, connectDropTarget },
+    ref
+  ) => {
     const FocusLayer = () => {
       Focus(Data.id);
     };
+
+    console.log(ArtboardId);
 
     const [Name, setName] = useState(Data.LayerName);
 
     const firebaseRef = firebase
       .firestore()
-      .collection("Users")
-      .doc("Kræn Byskov")
-      .collection("Pages")
+      .collection("Artboard")
+      .doc(ArtboardId)
+      .collection("Layers")
       .doc(Data.id);
 
     const DeleteItem = () => {

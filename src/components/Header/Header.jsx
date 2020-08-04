@@ -1,10 +1,13 @@
 import React from "react";
 import style from "./Header.module.scss";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <div className={style.Header}>
-      <p>This is a early Alpa of MyPainter</p>
+      <div>
+        <h2>{props.ArtboardID}</h2>
+        <p>This is a early Alpa of MyPainter</p>
+      </div>
     </div>
   );
 };

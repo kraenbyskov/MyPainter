@@ -32,6 +32,7 @@ const Layers = (props) => {
           {cards
             ? cards.map((Data, i) => (
                 <Layer
+                  ArtboardId={props.ArtboardID}
                   key={Data.id}
                   index={i}
                   id={Data.id}
@@ -49,7 +50,7 @@ const Layers = (props) => {
 
       <div className={style.Layers_Add}>
         <p>Add Layer</p>
-        <span onClick={() => AddLayer()}>
+        <span onClick={() => AddLayer(props.ArtboardID)}>
           <i className="fas fa-plus"></i>
         </span>
       </div>

@@ -1,10 +1,10 @@
 import { firebase } from "./Firebase/config";
 
-const AddLayer = () => {
+const AddLayer = (id) => {
   const ref = firebase
     .firestore()
     .collection("Artboard")
-    .doc("Testboard")
+    .doc(id)
     .collection("Layers");
 
   ref.doc().set({

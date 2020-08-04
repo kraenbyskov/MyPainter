@@ -1,4 +1,125 @@
+@import "../../global/sass/imports/shadow";
+@import "../../global/sass/imports/gradient";
+
 .VieweArtboard {
-    background: green;
+    h1 {
+        text-align: center;
+        color: var(--white);
+        padding-top: 100px;
+    }
+
+    @include linear-gradient(160deg, var(--blue) 20%, var(--dark-blue) 70%);
+    width: 100%;
+    height: 100vh;
+
+    .Boards {
+        width: 1200px;
+        position: absolute;
+        background: var(--dark-blue);
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        padding: 10px;
+        border-radius: 10px;
+        @include shadow3;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+        .Board {
+            @include shadow3;
+            background: var(--white);
+            border-radius: 10px;
+            height: 150px;
+            padding: 10px;
+            margin: 10px;
+            position: relative;
+            padding-bottom: 60px;
+
+            .ArtboardDelete {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                background: var(--light-blue);
+                padding: 5px 10px;
+                border-radius: 10px;
+                color: var(--white);
+                @include shadow2;
+            }
+
+            &_button {
+                @include shadow2;
+                position: absolute;
+                bottom: 10px;
+                border-radius: 10px;
+                width: 90%;
+                padding: 10px 0px;
+                color: var(--white);
+                text-align: center;
+                background: var(--light-blue);
+                cursor: pointer;
+
+                &:hover {
+                    background: var(--pink);
+                }
+            }
+
+        }
+
+        .AddBoardButton {
+            height: 210px;
+            padding: 10px;
+            margin: 10px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            i {
+                padding: 0;
+                font-size: 100px;
+                margin: 0;
+                color: var(--white);
+                cursor: pointer;
+
+                &:hover {
+                    color: var(--pink);
+                }
+
+            }
+
+        }
+
+    }
+
+    .NewArtboard {
+        width: 300px;
+        padding: 20px;
+        border-radius: 10px;
+        height: 100px;
+        background: var(--white);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        @include shadow4;
+
+        .button {
+            position: absolute;
+            top: 0;
+            right: 10px;
+            background: var(--blue);
+            display: inline-block;
+            padding: 5px 10px;
+            color: var(--white);
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover {
+                background: var(--pink);
+            }
+
+        }
+    }
 
 }

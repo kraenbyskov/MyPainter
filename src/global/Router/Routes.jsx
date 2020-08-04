@@ -1,6 +1,6 @@
 import FrontPage from "../../pages/FrontPage/Front";
-import Artboard from "../../pages/SelectArtboard/Artboard";
 import VieweArtboard from "../../pages/VieweArtboard/VieweArtboard";
+import Artboard from "../../pages/Artboard/Artboard";
 
 const Routes = [
   {
@@ -9,6 +9,13 @@ const Routes = [
     path: "/VieweArtboard",
     exact: false,
     Component: VieweArtboard,
+  },
+  {
+    id: 3,
+    name: "Artboard",
+    path: "/Artboard/:id",
+    exact: false,
+    Component: Artboard,
   },
   {
     id: 2,
