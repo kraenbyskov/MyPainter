@@ -5,10 +5,13 @@ import { firebase } from "../../global/Firebase/config";
 import { Link } from "react-router-dom";
 import Board from "./Board";
 import NewArtboard from "./NewArtboard";
+import Login from "../../components/Login/Login";
+import "firebase/auth";
 
-const VieweArtboard = () => {
+const VieweArtboard = (props) => {
   const [GetData, setGetData] = useState(null);
   const [NewArtboardButton, setNewArtboardButton] = useState(false);
+  console.log(props);
 
   const ref = firebase.firestore().collection("Artboard");
 
@@ -38,6 +41,9 @@ const VieweArtboard = () => {
 
   return (
     <div className={style.VieweArtboard}>
+      <div className={style.VieweArtboard_header}>
+        <Login />
+      </div>
       <h1>Se Artboards</h1>
       <div className={style.Boards}>
         {GetData

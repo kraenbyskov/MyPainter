@@ -1,3 +1,5 @@
+@import "../../global/sass/imports/transition";
+
 .Layers {
     position: relative;
     width: 100%;
@@ -24,7 +26,7 @@
         &-thumb {
             -webkit-border-radius: 10px;
             border-radius: 10px;
-            background: var(--dark-blue);
+            background: var(--sidebar-forground);
         }
 
         &-track-piece:end {
@@ -37,14 +39,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: var(--dark-blue);
+        background: var(--sidebar-forground);
         color: var(--white);
         position: fixed;
         bottom: 0;
         width: 15%;
-
-
-
 
         p {
             margin-left: 10px;
@@ -58,16 +57,17 @@
             align-items: center;
             display: flex;
             cursor: pointer;
+            @include transition(background);
 
             &:hover {
-                color: var(--gray);
+                color: var(--sidebar-Focus);
             }
         }
     }
 
 
     .Layer {
-        background: lighten(#313E63, 2);
+        background: var(--sidebar-forground);
         color: var(--white);
 
         padding: 10px;
@@ -77,9 +77,11 @@
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
+        @include transition(background);
+
 
         &:hover {
-            background: lighten(#313E63, 4);
+            background: var(--sidebar-Activeforground);
         }
 
         input {
@@ -92,7 +94,7 @@
 
 
             &:focus {
-                border-bottom: 2px solid var(--light-blue);
+                border-bottom: 2px solid var(--sidebar-Focus);
                 outline: none;
             }
         }
@@ -135,7 +137,7 @@
             }
 
             &:hover {
-                color: var(--gray);
+                color: var(--sidebar-Focus);
             }
         }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Drawingboard.module.scss";
 import useMouse from "@react-hook/mouse-position";
-// import Artboard from "./Artboard";
+import Artboard from "./Artboard";
 import Box from "./Box.jsx";
 
 const Drawingboard = (props) => {
@@ -12,41 +12,41 @@ const Drawingboard = (props) => {
   });
 
   return (
-    <div ref={TrackMouse} className={style.Drawingboard}>
-      {/* <Artboard> */}
-      <div>
-        {props.Data
-          ? props.Data.map(
-              ({
-                LayerName,
-                id,
-                zIndex,
-                BackgroundColor,
-                PositionX,
-                PositionY,
-                SizeW,
-                SizeH,
-              }) => (
-                <Box
-                  ArtboardID={props.ArtboardID}
-                  LayerName={LayerName}
-                  Focus={props.GetLayerId}
-                  key={id}
-                  Id={id}
-                  zIndex={zIndex}
-                  X={mouse.x}
-                  Y={mouse.y}
-                  BackgroundColor={BackgroundColor}
-                  PositionX={PositionX}
-                  PositionY={PositionY}
-                  SizeH={SizeH}
-                  SizeW={SizeW}
-                />
+    <div className={style.Drawingboard}>
+      <Artboard>
+        <div className={style.ArtboardContainer} ref={TrackMouse}>
+          {props.Data
+            ? props.Data.map(
+                ({
+                  LayerName,
+                  id,
+                  zIndex,
+                  BackgroundColor,
+                  PositionX,
+                  PositionY,
+                  SizeW,
+                  SizeH,
+                }) => (
+                  <Box
+                    ArtboardID={props.ArtboardID}
+                    LayerName={LayerName}
+                    Focus={props.GetLayerId}
+                    key={id}
+                    Id={id}
+                    zIndex={zIndex}
+                    X={mouse.x}
+                    Y={mouse.y}
+                    BackgroundColor={BackgroundColor}
+                    PositionX={PositionX}
+                    PositionY={PositionY}
+                    SizeH={SizeH}
+                    SizeW={SizeW}
+                  />
+                )
               )
-            )
-          : null}
-      </div>
-      {/* </Artboard> */}
+            : null}
+        </div>
+      </Artboard>
     </div>
   );
 };

@@ -8,14 +8,23 @@
         padding-top: 100px;
     }
 
-    @include linear-gradient(160deg, var(--blue) 20%, var(--dark-blue) 70%);
+
+    .VieweArtboard_header {
+        position: absolute;
+        width: 100%;
+        height: 40px;
+        background: var(--Header-background);
+        color: var(--white)
+    }
+
+    background: var(--background);
     width: 100%;
     height: 100vh;
 
     .Boards {
-        width: 1200px;
+        width: 1000px;
         position: absolute;
-        background: var(--dark-blue);
+        background: var(--sidebar-forground);
         transform: translate(-50%, -50%);
         left: 50%;
         top: 50%;
@@ -24,10 +33,10 @@
         @include shadow3;
 
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
 
         .Board {
-            @include shadow3;
+            @include shadow2;
             background: var(--white);
             border-radius: 10px;
             height: 150px;
@@ -40,10 +49,10 @@
                 position: absolute;
                 right: 10px;
                 top: 10px;
-                background: var(--light-blue);
+                background: var(--button-background);
                 padding: 5px 10px;
                 border-radius: 10px;
-                color: var(--white);
+                color: var(--button-foreground);
                 @include shadow2;
             }
 
@@ -54,13 +63,13 @@
                 border-radius: 10px;
                 width: 90%;
                 padding: 10px 0px;
-                color: var(--white);
+                color: var(--button-foreground);
                 text-align: center;
-                background: var(--light-blue);
+                background: var(--button-background);
                 cursor: pointer;
 
                 &:hover {
-                    background: var(--pink);
+                    background: var(--button-hoverBackground);
                 }
             }
 
@@ -76,14 +85,15 @@
             align-items: center;
 
             i {
+                text-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
                 padding: 0;
                 font-size: 100px;
                 margin: 0;
-                color: var(--white);
+                color: var(--button-background);
                 cursor: pointer;
 
                 &:hover {
-                    color: var(--pink);
+                    color: var(--button-hoverBackground);
                 }
 
             }
@@ -104,19 +114,40 @@
         transform: translate(-50%, -50%);
         @include shadow4;
 
+        .submitButton {
+            background: var(--button-background);
+            padding: 5px 10px;
+            font-size: 16px;
+            margin: 10px;
+            color: var(--button-foreground);
+            cursor: pointer;
+            border: 0px;
+            border-radius: 5px;
+            @include shadow2;
+            text-transform: uppercase;
+
+
+
+            &:hover {
+                background: var(--button-hoverBackground);
+            }
+
+        }
+
         .button {
+            @include shadow2;
             position: absolute;
             top: 0;
             right: 10px;
-            background: var(--blue);
+            background: var(--button-background);
             display: inline-block;
             padding: 5px 10px;
-            color: var(--white);
+            color: var(--button-foreground);
             border-radius: 5px;
             cursor: pointer;
 
             &:hover {
-                background: var(--pink);
+                background: var(--button-hoverBackground);
             }
 
         }

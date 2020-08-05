@@ -41,7 +41,7 @@ const NewArtboard = (props) => {
           Artboard Name:
           <input type="text" value={Data} onChange={handleChange} />
         </label>
-        <input type="submit" value="Submit" />
+        <input className={style.submitButton} type="submit" value="Add" />
       </form>
       <p className={style.button} onClick={() => props.isOpen(false)}>
         X

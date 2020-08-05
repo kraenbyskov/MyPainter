@@ -7,8 +7,12 @@ import EditLayers from "../../components/Editlayers/EditLayers";
 import Header from "../../components/Header/Header";
 import { firebase } from "../../global/Firebase/config";
 
+import withFirebaseAuth from "react-with-firebase-auth";
+import "firebase/auth";
+
 const Artboard = (props) => {
   const [GetData, setGetData] = useState(null);
+  const { signInWithGoogle } = props;
 
   const ref = firebase
     .firestore()
@@ -73,4 +77,12 @@ const Artboard = (props) => {
   );
 };
 
-export default Artboard;
+const firebaseAppAuth = firebase.auth();
+const providers = {
+  googleProvider: new firebase.auth.GoogleAuthProvider(),
+};
+
+export default withFirebaseAuth({
+  providers,
+  firebaseAppAuth,
+})(Artboard);

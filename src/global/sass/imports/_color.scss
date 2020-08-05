@@ -18,6 +18,10 @@
 /* color mixing
 ========================================================================== */
 
+
+/* color mixing
+========================================================================== */
+
 :root {
 
     // Hex Color
@@ -37,4 +41,67 @@
     --pink-rgb:#{hexToRGB(#C853FF)};
     --white-rgb:#{hexToRGB(#F0F3F9)};
     --gray-rgb:#{hexToRGB(#D9DDE6)};
+
+
+
+
+    /*
+    Shade of purpole
+    ========================================================================= */
+
+    // Background
+    --background: #28284E;
+
+
+    // Sidebar 
+    --sidebar-forground: #343461;
+    --sidebar-background: #222145;
+    --sidebar-Activeforground: #3e3e6e;
+    --sidebar-Focus: #FAD000;
+    --sideBar-foregroundText: #A599E9;
+
+    // header
+    --Header-forground: #343461;
+    --Header-background: #1a1935;
+    --Header-Focus: #FAD000;
+    --Header-foregroundText: #A599E9;
+
+    // Foreground 
+    --foreground: #A599E9;
+    --sideBar-foreground: #A599E9;
+
+
+    --dropBackground: #222145;
+    --border: #292952;
+
+    // button
+
+    --button-background: #FAD000;
+    --button-foreground: #222244;
+    --button-hoverBackground: #A599E9;
+
+
+    --editor-background: #2D2B55; // Editor background color.
+    --editor-foreground: #FFFFFF; // Editor default foreground color.
+    --editorLineNumber-foreground: #A599E9; // Color of editor line numbers.
+    --editorCursor-foreground: #FAD000; //  Color of the editor cursor.
+
+
+    // Errors and warnings:
+    --editorError-border: #EC3A37F5;
+    --editorError-foreground: #EC3A37F5;
+    --editorWarning-border: #FFFFFF00;
+    --editorWarning-foreground: #FAD000;
+
+    // The tabs
+    --tab-activeBackground: #222244;
+    --tab-activeForeground: #FFFFFF;
+    --tab-border: #1E1E3F;
+    --tab-activeBorder: #FAD000;
+    --tab-inactiveBackground: #2D2B55;
+    --tab-inactiveForeground: #A599E9;
+    --tab-unfocusedActiveForeground: #A599E9;
+    --tab-unfocusedInactiveForeground: #A599E9;
+
+
 }
