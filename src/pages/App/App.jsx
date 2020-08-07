@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import style from "./Artboard.module.scss";
+import style from "./App.module.scss";
 import Drawingboard from "../../components/drawingboard/Drawingboard";
 import Layers from "../../components/Layers/Layers";
 import EditLayers from "../../components/Editlayers/EditLayers";
@@ -10,14 +10,18 @@ import { firebase } from "../../global/Firebase/config";
 import withFirebaseAuth from "react-with-firebase-auth";
 import "firebase/auth";
 
-const Artboard = (props) => {
+const App = (props) => {
   const [GetData, setGetData] = useState(null);
-  const { signInWithGoogle } = props;
+  const [IsLogin, setIsLogin] = useState(null);
+  const { signInWithGoogle, signOut } = props;
+  console.log(props);
+
+  const DocumentId = "dsadsa";
 
   const ref = firebase
     .firestore()
     .collection("Artboard")
-    .doc(props.match.params.id)
+    .doc(DocumentId)
     .collection("Layers");
 
   const onCollection = (querySnapshot) => {
@@ -52,30 +56,33 @@ const Artboard = (props) => {
     ref.onSnapshot(onCollection);
     // eslint-disable-next-line
   }, []);
+  useEffect(() => {
+    props.user ? setIsLogin(true) : setIsLogin(false);
+  }, [props.user, IsLogin]);
 
   const [LayerId, setLayerId] = useState("Layer1");
   return (
     <div className={style.Front}>
-      <p className={style.button} onClick={signInWithGoogle}>
-        Log ind med Google
-      </p>
-      {GetData ? (
-        <div className={style.Front_Container}>
-          <Header ArtboardID={props.match.params.id} />
-          <Layers
-            ArtboardID={props.match.params.id}
-            GetLayerId={setLayerId}
-            Data={GetData.Data}
-            id={GetData.id}
-          />
-          <Drawingboard
-            ArtboardID={props.match.params.id}
-            GetLayerId={setLayerId}
-            Data={GetData.Data}
-          />
-          <EditLayers ArtboardID={props.match.params.id} Id={LayerId} />
-        </div>
-      ) : null}
+      <div className={style.Front_Container}>
+        <Header
+          signOut={signOut}
+          signInWithGoogle={signInWithGoogle}
+          ArtboardID={DocumentId}
+          user={props.user ? props.user : null}
+        />
+        <Layers
+          ArtboardID={DocumentId}
+          GetLayerId={setLayerId}
+          Data={GetData ? GetData.Data : null}
+          id={GetData ? GetData.id : null}
+        />
+        <Drawingboard
+          ArtboardID={DocumentId}
+          GetLayerId={setLayerId}
+          Data={GetData ? GetData.Data : null}
+        />
+        <EditLayers ArtboardID={DocumentId} Id={LayerId} />
+      </div>
     </div>
   );
 };
@@ -88,4 +95,4 @@ const providers = {
 export default withFirebaseAuth({
   providers,
   firebaseAppAuth,
-})(Artboard);
+})(App);

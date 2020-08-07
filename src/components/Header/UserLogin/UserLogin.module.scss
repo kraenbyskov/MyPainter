@@ -1,0 +1,18 @@
+.UserLogin {
+    &_Profile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+
+        span {
+            margin-right: 10px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: inline-block;
+            background-size: cover;
+            background-position: center;
+        }
+    }
+}

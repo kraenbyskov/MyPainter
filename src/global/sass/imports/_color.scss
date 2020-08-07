@@ -9,99 +9,85 @@
 /* Hex to RGB calc */
 
 @function hexToRGB($hex) {
-    @return red($hex),
-    green($hex),
-    blue($hex);
+  @return red($hex), green($hex), blue($hex);
 }
-
 
 /* color mixing
 ========================================================================== */
-
 
 /* color mixing
 ========================================================================== */
 
 :root {
+  // Hex Color
+  --blue: #313e63;
+  --light-blue: #6389da;
+  --gray-blue: #e7e6eb;
+  --dark-blue: #1c233c;
+  --pink: #c853ff;
+  --white: #f1f3f9;
+  --gray: #d9dde6;
+  --dark-gray: #cdcdcd;
 
-    // Hex Color
-    --blue: #313E63;
-    --light-blue: #6389DA;
-    --gray-blue: #e7e6eb;
-    --dark-blue: #1C233C;
-    --pink: #C853FF;
-    --white: #F1F3F9;
-    --gray: #D9DDE6;
-    --dark-gray: #CDCDCD;
+  // RGB Color
+  --blue-rgb: #{hexToRGB(#313e63)};
+  --light-blue-rgb: #{hexToRGB(#6389da)};
+  --dark-blue-rgb: #{hexToRGB(#1c233c)};
+  --pink-rgb: #{hexToRGB(#c853ff)};
+  --white-rgb: #{hexToRGB(#f0f3f9)};
+  --gray-rgb: #{hexToRGB(#d9dde6)};
 
-    // RGB Color
-    --blue-rgb:#{hexToRGB(#313E63)};
-    --light-blue-rgb:#{hexToRGB(#6389DA)};
-    --dark-blue-rgb:#{hexToRGB(#1C233C)};
-    --pink-rgb:#{hexToRGB(#C853FF)};
-    --white-rgb:#{hexToRGB(#F0F3F9)};
-    --gray-rgb:#{hexToRGB(#D9DDE6)};
-
-
-
-
-    /*
+  /*
     Shade of purpole
     ========================================================================= */
 
-    // Background
-    --background: #28284E;
+  // Background
+  --background: #28284e;
 
+  // Sidebar
+  --sidebar-forground: #343461;
+  --sidebar-background: #222145;
+  --sidebar-Activeforground: #3e3e6e;
+  --sidebar-Focus: #fad000;
+  --sideBar-foregroundText: #a599e9;
 
-    // Sidebar 
-    --sidebar-forground: #343461;
-    --sidebar-background: #222145;
-    --sidebar-Activeforground: #3e3e6e;
-    --sidebar-Focus: #FAD000;
-    --sideBar-foregroundText: #A599E9;
+  // header
+  --Header-forground: #343461;
+  --Header-background: #1a1935;
+  --Header-Focus: #fad000;
+  --Header-foregroundText: #a599e9;
 
-    // header
-    --Header-forground: #343461;
-    --Header-background: #1a1935;
-    --Header-Focus: #FAD000;
-    --Header-foregroundText: #A599E9;
+  // Foreground
+  --foreground: #a599e9;
+  --sideBar-foreground: #a599e9;
 
-    // Foreground 
-    --foreground: #A599E9;
-    --sideBar-foreground: #A599E9;
+  --dropBackground: #222145;
+  --border: #292952;
 
+  // button
 
-    --dropBackground: #222145;
-    --border: #292952;
+  --button-background: #fad000;
+  --button-foreground: #222244;
+  --button-hoverBackground: #a599e9;
 
-    // button
+  --editor-background: #2d2b55; // Editor background color.
+  --editor-foreground: #ffffff; // Editor default foreground color.
+  --editorLineNumber-foreground: #a599e9; // Color of editor line numbers.
+  --editorCursor-foreground: #fad000; //  Color of the editor cursor.
 
-    --button-background: #FAD000;
-    --button-foreground: #222244;
-    --button-hoverBackground: #A599E9;
+  // Errors and warnings:
+  --editorError-border: #ec3a37;
+  --editorError-foreground: #ec3a37;
+  --editorWarning-border: #ffffff00;
+  --editorWarning-foreground: #fad000;
 
-
-    --editor-background: #2D2B55; // Editor background color.
-    --editor-foreground: #FFFFFF; // Editor default foreground color.
-    --editorLineNumber-foreground: #A599E9; // Color of editor line numbers.
-    --editorCursor-foreground: #FAD000; //  Color of the editor cursor.
-
-
-    // Errors and warnings:
-    --editorError-border: #EC3A37F5;
-    --editorError-foreground: #EC3A37F5;
-    --editorWarning-border: #FFFFFF00;
-    --editorWarning-foreground: #FAD000;
-
-    // The tabs
-    --tab-activeBackground: #222244;
-    --tab-activeForeground: #FFFFFF;
-    --tab-border: #1E1E3F;
-    --tab-activeBorder: #FAD000;
-    --tab-inactiveBackground: #2D2B55;
-    --tab-inactiveForeground: #A599E9;
-    --tab-unfocusedActiveForeground: #A599E9;
-    --tab-unfocusedInactiveForeground: #A599E9;
-
-
+  // The tabs
+  --tab-activeBackground: #222244;
+  --tab-activeForeground: #ffffff;
+  --tab-border: #1e1e3f;
+  --tab-activeBorder: #fad000;
+  --tab-inactiveBackground: #2d2b55;
+  --tab-inactiveForeground: #a599e9;
+  --tab-unfocusedActiveForeground: #a599e9;
+  --tab-unfocusedInactiveForeground: #a599e9;
 }

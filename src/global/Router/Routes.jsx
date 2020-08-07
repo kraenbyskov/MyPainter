@@ -1,6 +1,7 @@
 import FrontPage from "../../pages/FrontPage/Front";
 import VieweArtboard from "../../pages/VieweArtboard/VieweArtboard";
 import Artboard from "../../pages/Artboard/Artboard";
+import App from "../../pages/App/App";
 
 const Routes = [
   {
@@ -16,6 +17,20 @@ const Routes = [
     path: "/Artboard/:id",
     exact: false,
     Component: Artboard,
+  },
+  {
+    id: 4,
+    name: "App",
+    path: "/App/:id",
+    exact: false,
+    Component: App,
+  },
+  {
+    id: 5,
+    name: "App",
+    path: "/App",
+    exact: false,
+    Component: App,
   },
   {
     id: 2,

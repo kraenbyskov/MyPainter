@@ -13,8 +13,6 @@ const Card = React.forwardRef(
       Focus(Data.id);
     };
 
-    console.log(ArtboardId);
-
     const [Name, setName] = useState(Data.LayerName);
 
     const firebaseRef = firebase

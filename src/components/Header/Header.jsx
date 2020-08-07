@@ -1,13 +1,14 @@
 import React from "react";
 import style from "./Header.module.scss";
-
+import UserLogin from "./UserLogin/UserLogin";
 const Header = (props) => {
   return (
     <div className={style.Header}>
-      <div>
-        <h2>{props.ArtboardID}</h2>
-        <p>This is a early Alpa of MyPainter</p>
-      </div>
+      <UserLogin
+        user={props.user}
+        signOut={props.signOut}
+        signInWithGoogle={props.signInWithGoogle}
+      />
     </div>
   );
 };
