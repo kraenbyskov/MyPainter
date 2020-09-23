@@ -4,11 +4,11 @@ import UserLogin from "./UserLogin/UserLogin";
 const Header = (props) => {
   return (
     <div className={style.Header}>
-      <UserLogin
+      {/* <UserLogin
         user={props.user}
         signOut={props.signOut}
         signInWithGoogle={props.signInWithGoogle}
-      />
+      /> */}
     </div>
   );
 };

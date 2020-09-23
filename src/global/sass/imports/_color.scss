@@ -9,7 +9,9 @@
 /* Hex to RGB calc */
 
 @function hexToRGB($hex) {
-  @return red($hex), green($hex), blue($hex);
+  @return red($hex),
+  green($hex),
+  blue($hex);
 }
 
 /* color mixing
@@ -36,6 +38,38 @@
   --pink-rgb: #{hexToRGB(#c853ff)};
   --white-rgb: #{hexToRGB(#f0f3f9)};
   --gray-rgb: #{hexToRGB(#d9dde6)};
+
+
+
+  --white: #FBFDFE;
+  --light-blue: #EDF9FE;
+  --light-gray: #DDDDDD;
+  --gray: #A0A0A0;
+  --dark-gray: #444444;
+  --light-black: #222222;
+  --black: #201F1F;
+  --green: #3DE7C9;
+  --blue: #3DB9E7;
+
+
+
+  // Theme colors
+
+  --background: var(--white);
+
+  // sidebar left
+  --sidebar-left-background: var(--light-blue);
+
+  // sidebar right
+  --sidebar-right-background: var(--white);
+
+
+  //header
+  --header-background: var(--white);
+
+  //Text
+  --paragrapth: var(--light-black);
+
 
   /*
     Shade of purpole

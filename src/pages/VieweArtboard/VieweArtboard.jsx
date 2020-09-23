@@ -41,10 +41,13 @@ const VieweArtboard = (props) => {
 
   return (
     <div className={style.VieweArtboard}>
-      <div className={style.VieweArtboard_header}>
+      {/* <div className={style.VieweArtboard_header}>
         <Login />
-      </div>
-      <h1>Se Artboards</h1>
+      </div> */}
+      <h1>See Artboards</h1>
+      <p style={{ textAlign: "center", color: "white" }}>
+        here you can see artboards or add new ones by click the plus
+      </p>
       <div className={style.Boards}>
         {GetData
           ? GetData.Data.map(({ ArtboardName, Users, id }) => (

@@ -5,9 +5,8 @@ const Frontpage = () => {
   return (
     <div className={style.Front}>
       <h1>Welcome to MyPainter 0.2 Alpa</h1>
-      <p>Login to site go to Artboards</p>
       <p>
-        <Link to={`/VieweArtboard`}>or just click here</Link>
+        <Link to={`/VieweArtboard`}>Click here to se Artboards</Link>
       </p>
     </div>
   );

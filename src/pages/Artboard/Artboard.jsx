@@ -56,9 +56,6 @@ const Artboard = (props) => {
   const [LayerId, setLayerId] = useState("Layer1");
   return (
     <div className={style.Front}>
-      <p className={style.button} onClick={signInWithGoogle}>
-        Log ind med Google
-      </p>
       {GetData ? (
         <div className={style.Front_Container}>
           <Header ArtboardID={props.match.params.id} />
