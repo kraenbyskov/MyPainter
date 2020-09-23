@@ -1,5 +1,4 @@
 ## My Painter
 
-## FlowChart of the DB
-
-https://www.zenflowchart.com/docs/edit/KWYxk8mepA22aMyJNjQ9
+Link Til online version hostet med google firebase
+https://mypainter-d50c0.web.app/
