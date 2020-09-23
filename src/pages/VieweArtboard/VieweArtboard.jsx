@@ -5,7 +5,7 @@ import { firebase } from "../../global/Firebase/config";
 import { Link } from "react-router-dom";
 import Board from "./Board";
 import NewArtboard from "./NewArtboard";
-import Login from "../../components/Login/Login";
+// import Login from "../../components/Login/Login";
 import "firebase/auth";
 
 const VieweArtboard = (props) => {

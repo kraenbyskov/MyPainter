@@ -12,7 +12,7 @@ import "firebase/auth";
 
 const Artboard = (props) => {
   const [GetData, setGetData] = useState(null);
-  const { signInWithGoogle } = props;
+  // const { signInWithGoogle } = props;
 
   const ref = firebase
     .firestore()
