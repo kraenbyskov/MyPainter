@@ -2,22 +2,8 @@
 @import "../../global/sass/imports/gradient";
 
 .VieweArtboard {
-    h1 {
-        text-align: center;
-        color: var(--white);
-        padding-top: 100px;
-    }
 
-
-    .VieweArtboard_header {
-        position: absolute;
-        width: 100%;
-        height: 40px;
-        background: var(--Header-background);
-        color: var(--white)
-    }
-
-    background: var(--background);
+    background-color: rgba(var(--background-rgb), 0.8);
     width: 100%;
     height: 100vh;
 

@@ -77,6 +77,7 @@
 
   // Background
   --background: #28284e;
+  --background-rgb: #{hexToRGB(#28284e)};
 
   // Sidebar
   --sidebar-forground: #343461;

@@ -4,7 +4,7 @@ import { firebase } from "../../global/Firebase/config";
 import { SketchPicker } from "react-color";
 import InputFields from "./inputFields";
 
-const EditLayers = (props) => {
+const EditLayers = ({ ArtboardID, Id }) => {
   const [BackgroundColor, setBackgroundColor] = useState({
     background: "#FFFFFF",
   });
@@ -17,9 +17,9 @@ const EditLayers = (props) => {
   const ref = firebase
     .firestore()
     .collection("Artboard")
-    .doc(props.ArtboardID)
+    .doc(ArtboardID ? ArtboardID : "das")
     .collection("Layers")
-    .doc(props.Id);
+    .doc(Id ? Id : "asd");
 
   useEffect(() => {
     ref.get().then((doc) => {
@@ -35,7 +35,7 @@ const EditLayers = (props) => {
       }
     });
     // eslint-disable-next-line
-  }, [props]);
+  }, [Id]);
 
   const onChange = (e, setState, type) => {
     setState(e.target.value);
