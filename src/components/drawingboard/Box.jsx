@@ -50,6 +50,7 @@ const Box = (props) => {
         height: parseInt(props.SizeH),
         left: parseInt(PositionX),
         top: parseInt(PositionY),
+        borderRadius: parseInt(props.BorderRadius),
         backgroundColor: props.BackgroundColor,
         zIndex: props.zIndex,
       }}

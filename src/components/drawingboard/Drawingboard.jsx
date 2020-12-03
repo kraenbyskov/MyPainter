@@ -9,6 +9,7 @@ const Artboard = (props) => {
 };
 
 const Drawingboard = ({ Data, GetLayerId }) => {
+
   const store = React.useContext(StoreContext);
   const ArtboardSelection = store.ArtboardSelection;
   const TrackMouse = React.useRef(null);
@@ -30,6 +31,7 @@ const Drawingboard = ({ Data, GetLayerId }) => {
                 BackgroundColor,
                 PositionX,
                 PositionY,
+                BorderRadius,
                 SizeW,
                 SizeH,
               }) => (
@@ -47,6 +49,7 @@ const Drawingboard = ({ Data, GetLayerId }) => {
                     PositionY={PositionY}
                     SizeH={SizeH}
                     SizeW={SizeW}
+                    BorderRadius={BorderRadius}
                   />
                 )
             )

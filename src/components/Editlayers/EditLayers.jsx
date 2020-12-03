@@ -15,6 +15,7 @@ const EditLayers = ({ Id }) => {
   const [SizeH, setSizeH] = useState(null);
   const [PositionX, setPositionX] = useState(null);
   const [PositionY, setPositionY] = useState(null);
+  const [BorderRadius, setBorderRadius] = useState(null);
   const [displayColorPicker, setdisplayColorPicker] = useState(false);
 
   const ref = firebase
@@ -33,6 +34,7 @@ const EditLayers = ({ Id }) => {
         setSizeH(board.SizeH);
         setPositionX(board.PositionX);
         setPositionY(board.PositionY);
+        setBorderRadius(board.BorderRadius)
       } else {
         console.log("No such document!");
       }
@@ -74,6 +76,15 @@ const EditLayers = ({ Id }) => {
       state: "PositionY",
       Value: PositionY,
       Change: setPositionY,
+    },
+  ];
+  const Shape = [
+    {
+      Title: "Border Radius",
+      Name: "R",
+      state: "BorderRadius",
+      Value: BorderRadius,
+      Change: setBorderRadius,
     },
   ];
   const Size = [
@@ -129,6 +140,22 @@ const EditLayers = ({ Id }) => {
               : "#FFFFFF",
           }}
         />
+      </div>
+      <h2>Shape</h2>
+      <div className={style.EditLayers_Controls}>
+        {Shape.map(({ Title, Name, Value, Change, state }) => (
+          <>
+            <p>{Title}</p>
+            <InputFields
+              key={Name}
+              Name={Name}
+              Value={Value}
+              Change={Change}
+              state={state}
+              onChange={onChange}
+            />
+          </>
+        ))}
       </div>
 
       <div className={style.EditLayers_Controls_colorPicker}>
