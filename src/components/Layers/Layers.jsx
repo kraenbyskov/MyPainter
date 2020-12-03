@@ -5,9 +5,12 @@ import update from "immutability-helper";
 import AddLayer from "../../global/AddLayer";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { StoreContext } from "../../context/StoreContext";
 
 const Layers = (props) => {
   const [cards, setCards] = useState(props.Data);
+  const store = React.useContext(StoreContext);
+  const ArtboardSelection = store.ArtboardSelection;
   useEffect(() => {
     setCards(props.Data);
   }, [props]);
@@ -31,26 +34,26 @@ const Layers = (props) => {
         <div className={style.Layers_Container}>
           {cards
             ? cards.map((Data, i) => (
-                <Layer
-                  ArtboardId={props.ArtboardID}
-                  key={Data.id}
-                  index={i}
-                  id={Data.id}
-                  text={Data.text}
-                  moveCard={moveCard}
-                  Focus={props.GetLayerId}
-                  Data={Data}
-                  AllData={cards}
-                  // OnBlur={onBlur}
-                />
-              ))
+              <Layer
+                ArtboardId={ArtboardSelection}
+                key={Data.id}
+                index={i}
+                id={Data.id}
+                text={Data.text}
+                moveCard={moveCard}
+                Focus={props.GetLayerId}
+                Data={Data}
+                AllData={cards}
+              // OnBlur={onBlur}
+              />
+            ))
             : null}
         </div>
       </DndProvider>
 
       <div className={style.Layers_Add}>
         <p>Add Layer</p>
-        <span onClick={() => AddLayer(props.ArtboardID)}>
+        <span onClick={() => AddLayer(ArtboardSelection)}>
           <i className="fas fa-plus"></i>
         </span>
       </div>

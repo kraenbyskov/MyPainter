@@ -8,12 +8,15 @@ import Board from "./Board";
 import NewArtboard from "./NewArtboard";
 // import Login from "../../components/Login/Login";
 import "firebase/auth";
+import { StoreContext } from "../../context/StoreContext";
 
-const VieweArtboard = ({ setArtboardSelection, ArtboardSelection }) => {
+const VieweArtboard = () => {
   const [GetData, setGetData] = useState(null);
   const [NewArtboardButton, setNewArtboardButton] = useState(false);
+  const store = React.useContext(StoreContext);
 
-  const [open, setOpen] = useState(ArtboardSelection === null ? true : false);
+
+  const [open, setOpen] = useState(store.ArtboardSelection === null ? true : false);
 
   const closeModal = () => setOpen(false);
 
@@ -77,11 +80,13 @@ const VieweArtboard = ({ setArtboardSelection, ArtboardSelection }) => {
                     <p key={user}>{user}</p>
                   ))}
                   <span onClick={() => {
-                    setArtboardSelection(ArtboardName)
                     setOpen(false)
+                    store.setArtboardSelection(ArtboardName)
                   }} className={style.Board_button}>
                     Go to Artboard
                 </span>
+
+
                 </Board>
               ))
               : null}

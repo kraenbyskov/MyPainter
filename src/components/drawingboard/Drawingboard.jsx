@@ -2,12 +2,15 @@ import React from "react";
 import style from "./Drawingboard.module.scss";
 import useMouse from "@react-hook/mouse-position";
 import Box from "./Box.jsx";
+import { StoreContext } from "../../context/StoreContext";
 
 const Artboard = (props) => {
   return <div className={style.Artboard}> {props.children}</div>;
 };
 
-const Drawingboard = ({ Data, ArtboardID, GetLayerId }) => {
+const Drawingboard = ({ Data, GetLayerId }) => {
+  const store = React.useContext(StoreContext);
+  const ArtboardSelection = store.ArtboardSelection;
   const TrackMouse = React.useRef(null);
   const mouse = useMouse(TrackMouse, {
     enterDelay: 100,
@@ -31,7 +34,7 @@ const Drawingboard = ({ Data, ArtboardID, GetLayerId }) => {
                 SizeH,
               }) => (
                   <Box
-                    ArtboardID={ArtboardID}
+                    ArtboardID={ArtboardSelection}
                     LayerName={LayerName}
                     Focus={GetLayerId}
                     key={id}

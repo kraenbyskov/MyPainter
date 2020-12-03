@@ -3,8 +3,11 @@ import style from "./EditLayers.module.scss";
 import { firebase } from "../../global/Firebase/config";
 import { SketchPicker } from "react-color";
 import InputFields from "./inputFields";
+import { StoreContext } from "../../context/StoreContext";
 
-const EditLayers = ({ ArtboardID, Id }) => {
+const EditLayers = ({ Id }) => {
+  const store = React.useContext(StoreContext);
+  const ArtboardSelection = store.ArtboardSelection;
   const [BackgroundColor, setBackgroundColor] = useState({
     background: "#FFFFFF",
   });
@@ -17,7 +20,7 @@ const EditLayers = ({ ArtboardID, Id }) => {
   const ref = firebase
     .firestore()
     .collection("Artboard")
-    .doc(ArtboardID ? ArtboardID : "das")
+    .doc(ArtboardSelection ? ArtboardSelection : "das")
     .collection("Layers")
     .doc(Id ? Id : "asd");
 

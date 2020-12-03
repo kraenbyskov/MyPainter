@@ -1,16 +1,16 @@
 import React from "react";
+import { StoreContext } from "../../context/StoreContext";
 import style from "./Header.module.scss";
 // import UserLogin from "./UserLogin/UserLogin";
-const Header = (props) => {
+const Header = () => {
+  const store = React.useContext(StoreContext);
+  const ArtboardSelection = store.ArtboardSelection;
   return (
     <div className={style.Header}>
-      {/* <UserLogin
-        user={props.user}
-        signOut={props.signOut}
-        signInWithGoogle={props.signInWithGoogle}
-      /> */}
+      <h3>Artboard : {ArtboardSelection}</h3>
     </div>
   );
 };
+
 
 export default Header;

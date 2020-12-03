@@ -8,7 +8,8 @@ import Header from "../../components/Header/Header";
 import { firebase } from "../../global/Firebase/config";
 
 import "firebase/auth";
-
+import { StoreContext } from "../../context/StoreContext";
+import { observer } from "mobx-react";
 
 
 const setData = (ArtboardSelection, setGetData) => {
@@ -53,8 +54,11 @@ const setData = (ArtboardSelection, setGetData) => {
 
 }
 
-const Artboard = ({ ArtboardSelection }) => {
+const Artboard = observer(() => {
   const [GetData, setGetData] = useState(null);
+  const store = React.useContext(StoreContext);
+  const ArtboardSelection = store.ArtboardSelection;
+
 
   useEffect(() => {
     setData(ArtboardSelection, setGetData)
@@ -64,23 +68,23 @@ const Artboard = ({ ArtboardSelection }) => {
   return (
     <div className={style.Front}>
       <div className={style.Front_Container}>
-        <Header ArtboardID={ArtboardSelection} />
+        <Header />
         <Layers
-          ArtboardID={ArtboardSelection}
+
           GetLayerId={setLayerId}
           Data={GetData && GetData.Data}
           id={GetData && GetData.id}
         />
         <Drawingboard
-          ArtboardID={ArtboardSelection}
+
           GetLayerId={setLayerId}
           Data={GetData && GetData.Data}
         />
-        <EditLayers ArtboardID={ArtboardSelection} Id={LayerId} />
+        <EditLayers Id={LayerId} />
       </div>
     </div>
   );
-};
+});
 
 
 
