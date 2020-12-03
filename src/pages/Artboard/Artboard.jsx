@@ -12,12 +12,13 @@ import "firebase/auth";
 
 const Artboard = (props) => {
   const [GetData, setGetData] = useState(null);
+  const selectetArtboard = "test"
   // const { signInWithGoogle } = props;
 
   const ref = firebase
     .firestore()
     .collection("Artboard")
-    .doc(props.match.params.id)
+    .doc(selectetArtboard)
     .collection("Layers");
 
   const onCollection = (querySnapshot) => {
@@ -58,31 +59,25 @@ const Artboard = (props) => {
     <div className={style.Front}>
       {GetData ? (
         <div className={style.Front_Container}>
-          <Header ArtboardID={props.match.params.id} />
+          <Header ArtboardID={selectetArtboard} />
           <Layers
-            ArtboardID={props.match.params.id}
+            ArtboardID={selectetArtboard}
             GetLayerId={setLayerId}
             Data={GetData.Data}
             id={GetData.id}
           />
           <Drawingboard
-            ArtboardID={props.match.params.id}
+            ArtboardID={selectetArtboard}
             GetLayerId={setLayerId}
             Data={GetData.Data}
           />
-          <EditLayers ArtboardID={props.match.params.id} Id={LayerId} />
+          <EditLayers ArtboardID={selectetArtboard} Id={LayerId} />
         </div>
       ) : null}
     </div>
   );
 };
 
-const firebaseAppAuth = firebase.auth();
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider(),
-};
 
-export default withFirebaseAuth({
-  providers,
-  firebaseAppAuth,
-})(Artboard);
+
+export default Artboard

@@ -1,10 +1,13 @@
 import React from "react";
 import style from "./Drawingboard.module.scss";
 import useMouse from "@react-hook/mouse-position";
-import Artboard from "./Artboard";
 import Box from "./Box.jsx";
 
-const Drawingboard = (props) => {
+const Artboard = (props) => {
+  return <div className={style.Artboard}> {props.children}</div>;
+};
+
+const Drawingboard = ({ Data, ArtboardID, GetLayerId }) => {
   const TrackMouse = React.useRef(null);
   const mouse = useMouse(TrackMouse, {
     enterDelay: 100,
@@ -15,22 +18,22 @@ const Drawingboard = (props) => {
     <div className={style.Drawingboard}>
       <Artboard>
         <div className={style.ArtboardContainer} ref={TrackMouse}>
-          {props.Data
-            ? props.Data.map(
-                ({
-                  LayerName,
-                  id,
-                  zIndex,
-                  BackgroundColor,
-                  PositionX,
-                  PositionY,
-                  SizeW,
-                  SizeH,
-                }) => (
+          {Data
+            ? Data.map(
+              ({
+                LayerName,
+                id,
+                zIndex,
+                BackgroundColor,
+                PositionX,
+                PositionY,
+                SizeW,
+                SizeH,
+              }) => (
                   <Box
-                    ArtboardID={props.ArtboardID}
+                    ArtboardID={ArtboardID}
                     LayerName={LayerName}
-                    Focus={props.GetLayerId}
+                    Focus={GetLayerId}
                     key={id}
                     Id={id}
                     zIndex={zIndex}
@@ -43,7 +46,7 @@ const Drawingboard = (props) => {
                     SizeW={SizeW}
                   />
                 )
-              )
+            )
             : null}
         </div>
       </Artboard>
