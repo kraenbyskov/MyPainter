@@ -9,18 +9,13 @@ import NewArtboard from "./NewArtboard";
 // import Login from "../../components/Login/Login";
 import "firebase/auth";
 import { StoreContext } from "../../context/StoreContext";
+import { observer } from "mobx-react";
 
-const VieweArtboard = () => {
+const VieweArtboard = observer(() => {
   const [GetData, setGetData] = useState(null);
   const [NewArtboardButton, setNewArtboardButton] = useState(false);
-  const store = React.useContext(StoreContext);
+  const { setArtboardSelection, setSelectArtboard, SelectArtboard } = React.useContext(StoreContext);
 
-
-  const [open, setOpen] = useState(store.ArtboardSelection === null ? true : false);
-
-  const closeModal = () => setOpen(false);
-
-  console.log("🚀 ~ file: VieweArtboard.jsx ~ line 24 ~ VieweArtboard ~ open", open)
 
   const ref = firebase.firestore().collection("Artboard");
 
@@ -52,14 +47,9 @@ const VieweArtboard = () => {
 
   return (
 
-    //   <button type="button" className="button" onClick={() => setOpen(o => !o)}>
-    //   Controlled Popup
-    // </button>
-
     <Popup
       modal
-      open={open}
-      onClose={closeModal}
+      open={SelectArtboard}
       nested
     >
       <div className="modal" style={{ width: "100%" }}>
@@ -80,8 +70,8 @@ const VieweArtboard = () => {
                     <p key={user}>{user}</p>
                   ))}
                   <span onClick={() => {
-                    setOpen(false)
-                    store.setArtboardSelection(ArtboardName)
+                    setSelectArtboard(false)
+                    setArtboardSelection(ArtboardName)
                   }} className={style.Board_button}>
                     Go to Artboard
                 </span>
@@ -94,8 +84,6 @@ const VieweArtboard = () => {
               <i
                 onClick={() => {
                   setNewArtboardButton(true)
-
-
                 }}
                 className="fas fa-plus-circle"
               ></i>
@@ -110,6 +98,6 @@ const VieweArtboard = () => {
     </Popup>
 
   );
-};
+});
 
 export default VieweArtboard;
