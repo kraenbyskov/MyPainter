@@ -81,6 +81,7 @@ const Artboard = observer(() => {
 
           GetLayerId={setLayerId}
           Data={GetData && GetData.Data}
+          ActiveLayerID={LayerId}
         />
         <EditLayers Id={LayerId} />
       </div>

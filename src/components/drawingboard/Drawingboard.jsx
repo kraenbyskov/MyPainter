@@ -8,7 +8,7 @@ const Artboard = (props) => {
   return <div className={style.Artboard}> {props.children}</div>;
 };
 
-const Drawingboard = ({ Data, GetLayerId }) => {
+const Drawingboard = ({ Data, GetLayerId, ActiveLayerID }) => {
 
   const store = React.useContext(StoreContext);
   const ArtboardSelection = store.ArtboardSelection;
@@ -50,6 +50,7 @@ const Drawingboard = ({ Data, GetLayerId }) => {
                     SizeH={SizeH}
                     SizeW={SizeW}
                     BorderRadius={BorderRadius}
+                    ActiveLayerID={ActiveLayerID}
                   />
                 )
             )

@@ -53,6 +53,7 @@ const Box = (props) => {
         borderRadius: parseInt(props.BorderRadius),
         backgroundColor: props.BackgroundColor,
         zIndex: props.zIndex,
+        border: props.ActiveLayerID === props.Id ? "2px solid black" : null,
       }}
     ></div>
   );
